@@ -5,6 +5,6 @@ export type User = {
   username: string;
   email: string;
   is_staff: boolean;
-  is_acrive: boolean;
+  is_active: boolean;
   date_joined: string;
 };

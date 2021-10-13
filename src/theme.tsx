@@ -5,6 +5,26 @@ import {
   ThemeProvider,
 } from "styled-components";
 
+const theme = {
+  breakpoints: {
+    small: "600px",
+    normal: "1000px",
+    big: "1200px",
+    bigger: "1600px",
+  },
+  fonts: {
+    thin: "eldo",
+    normal: "string",
+    bold: "string",
+    size: {
+      small: "0.85em",
+      normal: "1em",
+      big: "string",
+      bigger: "string",
+    },
+  },
+};
+
 const dark: DefaultTheme = {
   palette: {
     background: "#011936",
@@ -15,11 +35,12 @@ const dark: DefaultTheme = {
     accent: "#ED254E",
     border: "#9BA8B7",
   },
+  ...theme,
 };
 
 const bright: DefaultTheme = {
   palette: {
-    background: "red",
+    background: "black",
     backgroundAccent: "#01234C",
     font: "#F4FFFD",
     fontMuted: "#f4fffdb0",
@@ -27,6 +48,7 @@ const bright: DefaultTheme = {
     accent: "#ED254E",
     border: "#9BA8B7",
   },
+  ...theme,
 };
 
 interface ThemeProps {
@@ -54,8 +76,8 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     body {
-      background: ${(props) => props.theme.palette.background};
-      color: ${(props) => props.theme.palette.font};
+      background: ${({ theme }) => theme.palette.background};
+      color: ${({ theme }) => theme.palette.font};
       font-family: 'Raleway', sans-serif;
     }
 `;

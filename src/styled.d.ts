@@ -11,5 +11,22 @@ declare module "styled-components" {
       accent: string;
       border: string;
     };
+    breakpoints: {
+      small: string;
+      normal: string;
+      big: string;
+      bigger: string;
+    };
+    fonts: {
+      thin: string;
+      normal: string;
+      bold: string;
+      size: {
+        small: string;
+        normal: string;
+        big: string;
+        bigger: string;
+      };
+    };
   }
 }
