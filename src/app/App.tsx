@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Header from "./components/common/Header";
-import FeedList from "./components/feed/FeedList";
-import Container from "./components/utils/Container";
+import Header from "../common/components/Header";
+import Container from "../common/components/Container";
 import { GlobalStyle, Theme } from "./theme";
+import FeedComponent from "../features/feed/FeedComponent";
 
 function App() {
   const [darkTheme, setDarkTheme] = useState(true);
@@ -12,7 +12,7 @@ function App() {
       <GlobalStyle />
       <Container>
         <Header>Najnowsze</Header>
-        <FeedList />
+        <FeedComponent />
       </Container>
     </Theme>
   );

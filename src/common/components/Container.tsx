@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const DivContainer = styled.div`
+const StyledDiv = styled.div`
   margin: 0 auto;
   width: min(600px, 100%);
   min-width: 400px;
@@ -13,7 +13,7 @@ interface Props {
 }
 
 const Container: React.FC<Props> = ({ children }) => {
-  return <DivContainer>{children}</DivContainer>;
+  return <StyledDiv>{children}</StyledDiv>;
 };
 
 export default Container;

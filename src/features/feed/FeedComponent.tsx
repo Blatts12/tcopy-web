@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useAppDispatch, useAppSelector } from "../../hooks";
-import { fetchFeedByCursor } from "../../store/features/feed/feedReducer";
-import { User } from "../../store/features/user/userTypes";
-import Post from "./FeedElement";
+import { useAppDispatch, useAppSelector } from "../../common/storeHooks";
+import PostComponent from "../post/PostComponent";
+import { User } from "../user/userTypes";
+import { fetchFeedByCursor } from "./feedReducer";
 
 const ListContainer = styled.main`
   border-width: 0 1px 0 1px;
@@ -21,7 +21,7 @@ const unknownAuthor: User = {
   is_staff: false,
 };
 
-const FeedList = () => {
+const FeedComponent = () => {
   const [feedCursor, setFeedCursor] = useState("");
   const dispatch = useAppDispatch();
   const { loading, next, previous, posts, users } = useAppSelector(
@@ -47,7 +47,8 @@ const FeedList = () => {
         const post = posts.entities[postId];
         const author = post ? users.entities[post.author] : unknownAuthor;
 
-        if (author && post) return <Post post={post} author={author} />;
+        if (author && post)
+          return <PostComponent post={post} author={author} />;
         return "Wut?";
       })}
       {loading && <div>Loading...</div>}
@@ -57,4 +58,4 @@ const FeedList = () => {
   );
 };
 
-export default FeedList;
+export default FeedComponent;

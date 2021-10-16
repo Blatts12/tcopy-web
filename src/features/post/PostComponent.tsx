@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { Post } from "../../store/features/post/postTypes";
-import { User } from "../../store/features/user/userTypes";
+import { User } from "../user/userTypes";
+import { Post } from "./postTypes";
 
-const ElementContainer = styled.div`
+const PostContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 9fr;
   grid-template-areas:
-    "avatar name"
+    "avatar header"
     "avatar content"
     "avatar content";
 
@@ -20,19 +20,25 @@ const ElementContainer = styled.div`
   word-break: break-all;
 `;
 
+const AvatarContainer = styled.div`
+  grid-area: avatar;
+  margin-right: 8px;
+`;
+
 const Avatar = styled.div`
   background: ${({ theme }) => theme.palette.backgroundAccent};
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  margin-right: 8px;
-  grid-area: avatar;
 `;
 
-const Name = styled.div`
+const HeaderContainer = styled.header`
   height: 16px;
   line-height: 16px;
-  grid-area: name;
+  grid-area: header;
+`;
+
+const AuthorName = styled.span`
   color: ${({ theme }) => theme.palette.font};
   font-size: ${({ theme }) => theme.fonts.size.normal};
 `;
@@ -43,7 +49,7 @@ const AuthorTag = styled.span`
   margin-left: 6px;
 `;
 
-const DateSpan = styled.span`
+const PostDate = styled.span`
   color: ${({ theme }) => theme.palette.fontMuted};
   font-size: ${({ theme }) => theme.fonts.size.small};
   margin-left: 6px;
@@ -53,7 +59,7 @@ const DateSpan = styled.span`
   }
 `;
 
-const Content = styled.div`
+const ContentContainer = styled.main`
   grid-area: content;
   margin-top: 6px;
   line-height: 1.35;
@@ -64,27 +70,29 @@ interface Props {
   author: User;
 }
 
-const FeedElement: React.FC<Props> = ({ post, author }) => {
-  const parseDate = (dateString: string) => {
-    const date = new Date(dateString);
+const parseDate = (dateString: string) => {
+  const date = new Date(dateString);
 
-    return new Intl.DateTimeFormat("pl-PL", {
-      dateStyle: "short",
-      timeStyle: "short",
-    }).format(date);
-  };
+  return new Intl.DateTimeFormat("pl-PL", {
+    dateStyle: "short",
+    timeStyle: "short",
+  }).format(date);
+};
 
+const PostComponent: React.FC<Props> = ({ post, author }) => {
   return (
-    <ElementContainer>
-      <Avatar />
-      <Name>
-        {author.username}
+    <PostContainer>
+      <AvatarContainer>
+        <Avatar />
+      </AvatarContainer>
+      <HeaderContainer>
+        <AuthorName>{author.username}</AuthorName>
         <AuthorTag>@{author.username}</AuthorTag>
-        <DateSpan>{parseDate(post.pub_date)}</DateSpan>
-      </Name>
-      <Content>{post.content}</Content>
-    </ElementContainer>
+        <PostDate>{parseDate(post.pub_date)}</PostDate>
+      </HeaderContainer>
+      <ContentContainer>{post.content}</ContentContainer>
+    </PostContainer>
   );
 };
 
-export default FeedElement;
+export default PostComponent;
