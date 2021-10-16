@@ -10,23 +10,28 @@ const ElementContainer = styled.div`
     "avatar name"
     "avatar content"
     "avatar content";
-  padding: 10px;
+
+  padding: 10px 8px;
+
   border-width: 0 0 1px 0;
   border-style: solid;
   border-color: ${({ theme }) => theme.palette.border};
+
+  word-break: break-all;
 `;
 
 const Avatar = styled.div`
   background: ${({ theme }) => theme.palette.backgroundAccent};
-  width: 45px;
-  height: 45px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
+  margin-right: 8px;
   grid-area: avatar;
 `;
 
 const Name = styled.div`
-  height: 30px;
-  line-height: 30px;
+  height: 16px;
+  line-height: 16px;
   grid-area: name;
   color: ${({ theme }) => theme.palette.font};
   font-size: ${({ theme }) => theme.fonts.size.normal};
@@ -51,6 +56,7 @@ const DateSpan = styled.span`
 const Content = styled.div`
   grid-area: content;
   margin-top: 6px;
+  line-height: 1.35;
 `;
 
 interface Props {
@@ -59,14 +65,13 @@ interface Props {
 }
 
 const FeedElement: React.FC<Props> = ({ post, author }) => {
-  const parseDate = (pubDateString: string) => {
-    const pubDate = new Date(pubDateString);
-    console.log(pubDate);
+  const parseDate = (dateString: string) => {
+    const date = new Date(dateString);
 
     return new Intl.DateTimeFormat("pl-PL", {
       dateStyle: "short",
       timeStyle: "short",
-    }).format(pubDate);
+    }).format(date);
   };
 
   return (

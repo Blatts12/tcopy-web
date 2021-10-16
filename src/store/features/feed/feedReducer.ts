@@ -14,7 +14,7 @@ export const fetchFeedByCursor = createAsyncThunk(
   "feed/fetchByCursor",
   async (cursor: string = "", { dispatch }) => {
     const data: FeedDto = await fetch(
-      `http://127.0.0.1:8000/api/posts/?cursor=${cursor}`
+      `http://127.0.0.1:8000/api/feed/global/?cursor=${cursor}`
     ).then((res) => res.json());
 
     return data;

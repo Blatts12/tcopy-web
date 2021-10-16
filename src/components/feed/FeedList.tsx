@@ -9,6 +9,7 @@ const ListContainer = styled.main`
   border-width: 0 1px 0 1px;
   border-style: solid;
   border-color: ${({ theme }) => theme.palette.border};
+  height: calc(100% - 45px);
 `;
 
 const unknownAuthor: User = {

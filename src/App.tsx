@@ -13,7 +13,6 @@ function App() {
       <Container>
         <Header>Najnowsze</Header>
         <FeedList />
-        <button onClick={() => setDarkTheme(!darkTheme)}>Change Theme</button>
       </Container>
     </Theme>
   );

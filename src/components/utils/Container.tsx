@@ -3,7 +3,8 @@ import styled from "styled-components";
 
 const DivContainer = styled.div`
   margin: 0 auto;
-  width: 600px;
+  width: min(600px, 100%);
+  min-width: 400px;
   height: 100vh;
 `;
 
