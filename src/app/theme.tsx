@@ -67,7 +67,15 @@ export const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
     }
 
-    body,
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: ${({ theme }) => theme.palette.background};
+      color: ${({ theme }) => theme.palette.font};
+      font-family: 'Raleway', sans-serif;
+    }
+
     h1,
     h2,
     h3,
@@ -75,9 +83,5 @@ export const GlobalStyle = createGlobalStyle`
         margin: 0;
     }
 
-    body {
-      background: ${({ theme }) => theme.palette.background};
-      color: ${({ theme }) => theme.palette.font};
-      font-family: 'Raleway', sans-serif;
-    }
+    
 `;

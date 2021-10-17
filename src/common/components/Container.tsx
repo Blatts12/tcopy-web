@@ -5,7 +5,7 @@ const StyledDiv = styled.div`
   margin: 0 auto;
   width: min(600px, 100%);
   min-width: 400px;
-  height: 100vh;
+  height: 100%;
 `;
 
 interface Props {

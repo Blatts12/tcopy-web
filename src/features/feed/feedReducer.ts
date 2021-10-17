@@ -1,25 +1,11 @@
-import {
-  createAsyncThunk,
-  createEntityAdapter,
-  createSlice,
-} from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+import { createPost } from "../post/postActions";
+import { postAdapter } from "../post/postAdapter";
 import { Post, PostDto } from "../post/postTypes";
+import { userAdapter } from "../user/userAdapter";
 import { User } from "../user/userTypes";
-import { Feed, FeedDto } from "./feedTypes";
-
-const postAdapter = createEntityAdapter<Post>();
-const userAdapter = createEntityAdapter<User>();
-
-export const fetchFeedByCursor = createAsyncThunk(
-  "feed/fetchByCursor",
-  async (cursor: string = "", { dispatch }) => {
-    const data: FeedDto = await fetch(
-      `http://127.0.0.1:8000/api/feed/global/?cursor=${cursor}`
-    ).then((res) => res.json());
-
-    return data;
-  }
-);
+import { fetchFeedByCursor } from "./feedActions";
+import { Feed } from "./feedTypes";
 
 const initialState: Feed = {
   next: null,
@@ -60,6 +46,17 @@ const feedSlice = createSlice({
         state.loading = true;
       })
       .addCase(fetchFeedByCursor.rejected, (state, action) => {
+        console.log(action.payload);
+      })
+      .addCase(createPost.fulfilled, (state, action) => {
+        const author: User = action.payload.author;
+        const post: Post = { ...action.payload, author: author.id };
+
+        userAdapter.upsertOne(state.users, author);
+        state.posts.ids.unshift(post.id);
+        state.posts.entities[post.id] = post;
+      })
+      .addCase(createPost.rejected, (state, action) => {
         console.log(action.payload);
       });
   },

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { useAppDispatch, useAppSelector } from "../../common/storeHooks";
+import { useAppDispatch, useAppSelector } from "../../common/hooks/storeHooks";
+import { createPost } from "../post/postActions";
 import PostComponent from "../post/PostComponent";
 import { User } from "../user/userTypes";
-import { fetchFeedByCursor } from "./feedReducer";
+import { fetchFeedByCursor } from "./feedActions";
 
 const ListContainer = styled.main`
   border-width: 0 1px 0 1px;
@@ -21,7 +22,7 @@ const unknownAuthor: User = {
   is_staff: false,
 };
 
-const FeedComponent = () => {
+const FeedComponent: React.FC = () => {
   const [feedCursor, setFeedCursor] = useState("");
   const dispatch = useAppDispatch();
   const { loading, next, previous, posts, users } = useAppSelector(
@@ -41,6 +42,12 @@ const FeedComponent = () => {
     setFeedCursor(url.searchParams.get("cursor") || "");
   };
 
+  const testCreatePost = () => {
+    dispatch(
+      createPost({ author_id: 1, content: "abbuabuabuabuabuabaubaubau" })
+    );
+  };
+
   return (
     <ListContainer>
       {posts?.ids.map((postId) => {
@@ -48,12 +55,13 @@ const FeedComponent = () => {
         const author = post ? users.entities[post.author] : unknownAuthor;
 
         if (author && post)
-          return <PostComponent post={post} author={author} />;
+          return <PostComponent key={postId} post={post} author={author} />;
         return "Wut?";
       })}
       {loading && <div>Loading...</div>}
       {!next && !loading && <div>End</div>}
       {next && <button onClick={fetchMore}>Load More</button>}
+      <button onClick={testCreatePost}>Test Create Post</button>
     </ListContainer>
   );
 };
