@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Avatar } from "../../common/components/Avatar";
 import { User } from "../user/userTypes";
 import { Post } from "./postTypes";
 
@@ -23,13 +24,6 @@ const PostContainer = styled.div`
 const AvatarContainer = styled.div`
   grid-area: avatar;
   margin-right: 8px;
-`;
-
-const Avatar = styled.div`
-  background: ${({ theme }) => theme.palette.backgroundAccent};
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
 `;
 
 const HeaderContainer = styled.header`

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useAppDispatch, useAppSelector } from "../../common/hooks/storeHooks";
-import { createPost } from "../post/postActions";
+import CreatePostForm from "../post/CreatePostForm";
 import PostComponent from "../post/PostComponent";
 import { User } from "../user/userTypes";
 import { fetchFeedByCursor } from "./feedActions";
@@ -42,14 +42,9 @@ const FeedComponent: React.FC = () => {
     setFeedCursor(url.searchParams.get("cursor") || "");
   };
 
-  const testCreatePost = () => {
-    dispatch(
-      createPost({ author_id: 1, content: "abbuabuabuabuabuabaubaubau" })
-    );
-  };
-
   return (
     <ListContainer>
+      <CreatePostForm />
       {posts?.ids.map((postId) => {
         const post = posts.entities[postId];
         const author = post ? users.entities[post.author] : unknownAuthor;
@@ -61,7 +56,6 @@ const FeedComponent: React.FC = () => {
       {loading && <div>Loading...</div>}
       {!next && !loading && <div>End</div>}
       {next && <button onClick={fetchMore}>Load More</button>}
-      <button onClick={testCreatePost}>Test Create Post</button>
     </ListContainer>
   );
 };
