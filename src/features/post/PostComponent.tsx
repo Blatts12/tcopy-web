@@ -19,6 +19,8 @@ const PostContainer = styled.div`
   border-color: ${({ theme }) => theme.palette.border};
 
   word-break: break-all;
+
+  animation: fadein 1s;
 `;
 
 const AvatarContainer = styled.div`
@@ -57,6 +59,7 @@ const ContentContainer = styled.main`
   grid-area: content;
   margin-top: 6px;
   line-height: 1.35;
+  white-space: pre-line;
 `;
 
 interface Props {

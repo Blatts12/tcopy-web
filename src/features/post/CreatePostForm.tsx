@@ -34,6 +34,7 @@ const ContentContainer = styled.div`
 
   color: ${({ theme }) => theme.palette.font};
   border-bottom: 3px solid ${({ theme }) => theme.palette.border};
+  transition: border-color 200ms ease;
 
   &:focus-within {
     border-color: ${({ theme }) => theme.palette.primary};
@@ -53,6 +54,18 @@ const ContentTextArea = styled.textarea`
   font-size: inherit;
 `;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  width: 100%;
+`;
+
+const LetterCounter = styled.span`
+  color: ${({ theme }) => theme.palette.fontMuted};
+`;
+
+const postMaxLength = 512;
 const CreatePostForm: React.FC = () => {
   const [postContent, setPostContent] = useState("");
   const disptach = useAppDispatch();
@@ -85,12 +98,16 @@ const CreatePostForm: React.FC = () => {
         <ContentContainer>
           <ContentTextArea
             onChange={handlePostContentChange}
-            maxLength={512}
+            value={postContent}
+            maxLength={postMaxLength}
             placeholder="O czym myślisz?"
             required={true}
           />
         </ContentContainer>
-        <SubmitButton value="Post" />
+        <ButtonContainer>
+          <LetterCounter>{postMaxLength - postContent.length}</LetterCounter>
+          <SubmitButton value="Post" />
+        </ButtonContainer>
       </form>
     </FormContainer>
   );

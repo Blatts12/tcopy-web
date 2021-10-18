@@ -11,4 +11,10 @@ export const SubmitButton = styled.input.attrs((props) => ({
   background: ${({ theme }) => theme.palette.accent};
   border: none;
   border-radius: 8px;
+  transition: outline-width 50ms linear;
+
+  &:focus,
+  &:hover {
+    outline: 2px solid ${({ theme }) => theme.palette.primary};
+  }
 `;

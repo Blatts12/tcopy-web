@@ -83,5 +83,18 @@ export const GlobalStyle = createGlobalStyle`
         margin: 0;
     }
 
+    #root {
+      height: max(100%, auto);
+    }
+    
+    @keyframes fadein {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
     
 `;
