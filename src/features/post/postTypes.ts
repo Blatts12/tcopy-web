@@ -1,6 +1,12 @@
 import { User } from "../user/userTypes";
 import { EntityId } from "@reduxjs/toolkit";
 
+export type PostState = {
+  newPost: {
+    content: string;
+  };
+};
+
 export type PostDto = {
   id: EntityId;
   author: User;

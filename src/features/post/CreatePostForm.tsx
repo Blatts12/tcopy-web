@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { Avatar } from "../../common/components/Avatar";
 import { SubmitButton } from "../../common/components/Button";
-import { useAppDispatch } from "../../common/hooks/storeHooks";
+import { useAppDispatch, useAppSelector } from "../../common/hooks/storeHooks";
 import { createPost } from "./postActions";
+import { setNewPost } from "./postReducer";
+
+const postMaxLength = 512;
 
 const FormContainer = styled.div`
   display: grid;
@@ -48,6 +51,8 @@ const ContentTextArea = styled.textarea`
   resize: none;
   border: none;
   outline: none;
+  overflow: hidden;
+
   background: ${({ theme }) => theme.palette.background};
   color: inherit;
   font-family: inherit;
@@ -64,28 +69,38 @@ const ButtonContainer = styled.div`
 const LetterCounter = styled.span`
   color: ${({ theme }) => theme.palette.fontMuted};
 `;
-
-const postMaxLength = 512;
 const CreatePostForm: React.FC = () => {
-  const [postContent, setPostContent] = useState("");
-  const disptach = useAppDispatch();
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
+  const { content } = useAppSelector((state) => state.post.newPost);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (textAreaRef.current) {
+      const area = textAreaRef.current;
+      area.style.height = "25px";
+      area.style.height = `${area.scrollHeight}px`;
+    }
+  }, [content]);
 
   const handlePostContentChange: React.ChangeEventHandler<HTMLTextAreaElement> =
     (e) => {
-      e.target.style.height = `25px`;
-      e.target.style.height = `${e.target.scrollHeight}px`;
-      setPostContent(e.target.value);
+      dispatch(
+        setNewPost({
+          content: e.target.value,
+        })
+      );
     };
 
   const handleCreatePost: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
 
-    const content = postContent.trim();
+    let parsedContent = content.trim();
+    parsedContent = parsedContent.replace(/[\r\n]{3,}/g, "\n\n");
 
     if (content === "") {
       alert("empty content");
     } else {
-      disptach(createPost({ content, author_id: 1 }));
+      dispatch(createPost({ content: parsedContent, author_id: 1 }));
     }
   };
 
@@ -97,15 +112,16 @@ const CreatePostForm: React.FC = () => {
       <form onSubmit={handleCreatePost}>
         <ContentContainer>
           <ContentTextArea
+            ref={textAreaRef}
             onChange={handlePostContentChange}
-            value={postContent}
+            value={content}
             maxLength={postMaxLength}
             placeholder="O czym myślisz?"
             required={true}
           />
         </ContentContainer>
         <ButtonContainer>
-          <LetterCounter>{postMaxLength - postContent.length}</LetterCounter>
+          <LetterCounter>{postMaxLength - content.length}</LetterCounter>
           <SubmitButton value="Post" />
         </ButtonContainer>
       </form>

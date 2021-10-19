@@ -1,11 +1,12 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
 import { createPost } from "../post/postActions";
-import { postAdapter } from "../post/postAdapter";
 import { Post, PostDto } from "../post/postTypes";
-import { userAdapter } from "../user/userAdapter";
 import { User } from "../user/userTypes";
 import { fetchFeedByCursor } from "./feedActions";
 import { Feed } from "./feedTypes";
+
+const postAdapter = createEntityAdapter<Post>();
+const userAdapter = createEntityAdapter<User>();
 
 const initialState: Feed = {
   next: null,

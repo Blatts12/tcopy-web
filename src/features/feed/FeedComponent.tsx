@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import { Virtuoso } from "react-virtuoso";
 import styled from "styled-components";
 import { useAppDispatch, useAppSelector } from "../../common/hooks/storeHooks";
 import CreatePostForm from "../post/CreatePostForm";
@@ -14,10 +15,10 @@ const ListContainer = styled.main`
 `;
 
 const unknownAuthor: User = {
+  id: -1,
   username: "unknown",
   date_joined: "unknown",
   email: "unknown",
-  id: -1,
   is_active: false,
   is_staff: false,
 };
@@ -36,26 +37,31 @@ const FeedComponent: React.FC = () => {
     };
   }, [dispatch, feedCursor]);
 
-  const fetchMore = () => {
+  const fetchMore = useCallback(() => {
     if (!next) return;
     const url = new URL(next);
     setFeedCursor(url.searchParams.get("cursor") || "");
-  };
+  }, [next]);
 
   return (
     <ListContainer>
-      <CreatePostForm />
-      {posts?.ids.map((postId) => {
-        const post = posts.entities[postId];
-        const author = post ? users.entities[post.author] : unknownAuthor;
-
-        if (author && post)
-          return <PostComponent key={postId} post={post} author={author} />;
-        return "Wut?";
-      })}
-      {loading && <div>Loading...</div>}
-      {!next && !loading && <div>End</div>}
-      {next && <button onClick={fetchMore}>Load More</button>}
+      <Virtuoso
+        style={{ height: "calc(100vh - 45px)" }}
+        data={posts.ids}
+        endReached={fetchMore}
+        itemContent={(index, postId) => {
+          const post = posts.entities[postId];
+          const author = post ? users.entities[post.author] : unknownAuthor;
+          console.log("post");
+          if (author && post)
+            return <PostComponent key={postId} post={post} author={author} />;
+          return "Wut?";
+        }}
+        components={{
+          Header: () => <CreatePostForm />,
+          Footer: () => (next === null ? <span>End</span> : <></>),
+        }}
+      />
     </ListContainer>
   );
 };
