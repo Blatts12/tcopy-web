@@ -16,10 +16,11 @@ const ListContainer = styled.main`
 
 const unknownAuthor: User = {
   id: -1,
-  username: "unknown",
+  display_name: "unknown",
+  user_tag: "unknown",
   date_joined: "unknown",
+  last_login: "unknown",
   email: "unknown",
-  is_active: false,
   is_staff: false,
 };
 

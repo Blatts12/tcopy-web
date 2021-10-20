@@ -18,8 +18,6 @@ const PostContainer = styled.div`
   border-style: solid;
   border-color: ${({ theme }) => theme.palette.border};
 
-  word-break: break-all;
-
   animation: fadein 1s;
 `;
 
@@ -28,7 +26,7 @@ const AvatarContainer = styled.div`
   margin-right: 8px;
 `;
 
-const HeaderContainer = styled.header`
+const HeaderContainer = styled.div`
   height: 16px;
   line-height: 16px;
   grid-area: header;
@@ -58,8 +56,12 @@ const PostDate = styled.span`
 const ContentContainer = styled.main`
   grid-area: content;
   margin-top: 6px;
+`;
+
+const Content = styled.span`
   line-height: 1.35;
-  white-space: pre-line;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
 `;
 
 interface Props {
@@ -83,11 +85,13 @@ const PostComponent: React.FC<Props> = ({ post, author }) => {
         <Avatar />
       </AvatarContainer>
       <HeaderContainer>
-        <AuthorName>{author.username}</AuthorName>
-        <AuthorTag>@{author.username}</AuthorTag>
+        <AuthorName>{author.display_name}</AuthorName>
+        <AuthorTag>@{author.user_tag}</AuthorTag>
         <PostDate>{parseDate(post.pub_date)}</PostDate>
       </HeaderContainer>
-      <ContentContainer>{post.content}</ContentContainer>
+      <ContentContainer>
+        <Content>{post.content}</Content>
+      </ContentContainer>
     </PostContainer>
   );
 };
