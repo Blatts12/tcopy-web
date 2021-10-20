@@ -2,9 +2,10 @@ import { EntityId } from "@reduxjs/toolkit";
 
 export type User = {
   id: EntityId;
-  username: string;
   email: string;
+  user_tag: string;
+  display_name: string;
   is_staff: boolean;
-  is_active: boolean;
+  last_login: string | null;
   date_joined: string;
 };
