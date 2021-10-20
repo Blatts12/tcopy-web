@@ -37,29 +37,38 @@ const FeedComponent: React.FC = () => {
     };
   }, [dispatch, feedCursor]);
 
-  const fetchMore = useCallback(() => {
+  const fetchMore = useCallback((next) => {
     if (!next) return;
     const url = new URL(next);
     setFeedCursor(url.searchParams.get("cursor") || "");
-  }, [next]);
+  }, []);
 
   return (
     <ListContainer>
       <Virtuoso
+        useWindowScroll={true}
         style={{ height: "calc(100vh - 45px)" }}
         data={posts.ids}
-        endReached={fetchMore}
+        endReached={() => fetchMore(next)}
         itemContent={(index, postId) => {
           const post = posts.entities[postId];
           const author = post ? users.entities[post.author] : unknownAuthor;
-          console.log("post");
+
           if (author && post)
             return <PostComponent key={postId} post={post} author={author} />;
-          return "Wut?";
+          return <></>;
         }}
         components={{
           Header: () => <CreatePostForm />,
-          Footer: () => (next === null ? <span>End</span> : <></>),
+          Footer: () => {
+            if (loading) {
+              return <span>Loading</span>;
+            }
+            if (!loading && !next) {
+              return <span>End</span>;
+            }
+            return <></>;
+          },
         }}
       />
     </ListContainer>

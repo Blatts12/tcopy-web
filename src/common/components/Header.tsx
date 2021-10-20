@@ -2,8 +2,14 @@ import React from "react";
 import styled from "styled-components";
 
 const HeaderContainer = styled.header`
+  position: sticky;
+  top: 0;
+
   height: 45px;
   padding: 10px;
+  z-index: 1;
+
+  background: ${({ theme }) => theme.palette.background};
   border-width: 0 1px 2px 1px;
   border-style: solid;
   border-color: ${({ theme }) => theme.palette.border};
