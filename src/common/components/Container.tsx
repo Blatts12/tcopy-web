@@ -1,19 +1,8 @@
-import React from "react";
 import styled from "styled-components";
 
-const StyledDiv = styled.div`
-  margin: 0 auto;
-  width: min(600px, 100%);
-  min-width: 400px;
+export const FeedContainer = styled.div`
+  width: 100%;
   height: 100%;
+
+  grid-area: feed;
 `;
-
-interface Props {
-  children: React.ReactNode;
-}
-
-const Container: React.FC<Props> = ({ children }) => {
-  return <StyledDiv>{children}</StyledDiv>;
-};
-
-export default Container;

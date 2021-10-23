@@ -56,6 +56,8 @@ const PostDate = styled.span`
 const ContentContainer = styled.main`
   grid-area: content;
   margin-top: 6px;
+
+  overflow: hidden;
 `;
 
 const Content = styled.span`

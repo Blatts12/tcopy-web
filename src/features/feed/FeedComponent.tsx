@@ -6,11 +6,9 @@ import CreatePostForm from "../post/CreatePostForm";
 import PostComponent from "../post/PostComponent";
 import { User } from "../user/userTypes";
 import { fetchFeedByCursor } from "./feedActions";
+import { FeedType } from "./feedTypes";
 
 const ListContainer = styled.main`
-  border-width: 0 1px 0 1px;
-  border-style: solid;
-  border-color: ${({ theme }) => theme.palette.border};
   height: calc(100% - 45px);
 `;
 
@@ -24,19 +22,23 @@ const unknownAuthor: User = {
   is_staff: false,
 };
 
-const FeedComponent: React.FC = () => {
+interface Props {
+  type: FeedType;
+}
+
+const FeedComponent: React.FC<Props> = ({ type, children }) => {
   const [feedCursor, setFeedCursor] = useState("");
   const dispatch = useAppDispatch();
-  const { loading, next, previous, posts, users } = useAppSelector(
-    (state) => state.feed
-  );
+  const { loading, next, posts, users } = useAppSelector((state) => state.feed);
 
   useEffect(() => {
-    const fetchPromise = dispatch(fetchFeedByCursor(feedCursor));
+    const fetchPromise = dispatch(
+      fetchFeedByCursor({ cursor: feedCursor, type })
+    );
     return () => {
       fetchPromise.abort();
     };
-  }, [dispatch, feedCursor]);
+  }, [dispatch, type, feedCursor]);
 
   const fetchMore = useCallback((next) => {
     if (!next) return;

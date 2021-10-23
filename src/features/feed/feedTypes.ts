@@ -1,4 +1,4 @@
-import { EntityId, EntityState } from "@reduxjs/toolkit";
+import { EntityState } from "@reduxjs/toolkit";
 import { Post, PostDto } from "../post/postTypes";
 import { User } from "../user/userTypes";
 
@@ -15,3 +15,9 @@ export type Feed = {
   users: EntityState<User>;
   loading: boolean;
 };
+
+export enum FeedType {
+  Global,
+  UserLiked,
+  UserFollowed,
+}
