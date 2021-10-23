@@ -8,8 +8,8 @@ import { User } from "../user/userTypes";
 import { fetchFeedByCursor } from "./feedActions";
 import { FeedType } from "./feedTypes";
 
-const ListContainer = styled.main`
-  height: calc(100% - 45px);
+export const FeedContainer = styled.div`
+  width: 100%;
 `;
 
 const unknownAuthor: User = {
@@ -47,7 +47,7 @@ const FeedComponent: React.FC<Props> = ({ type, children }) => {
   }, []);
 
   return (
-    <ListContainer>
+    <FeedContainer>
       <Virtuoso
         useWindowScroll={true}
         style={{ height: "calc(100vh - 45px)" }}
@@ -74,7 +74,7 @@ const FeedComponent: React.FC<Props> = ({ type, children }) => {
           },
         }}
       />
-    </ListContainer>
+    </FeedContainer>
   );
 };
 

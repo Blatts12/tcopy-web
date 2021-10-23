@@ -13,7 +13,7 @@ import Login from "./pages/Login";
 const AppContainer = styled.div`
   position: relative;
   display: grid;
-  grid-template-areas: "leftbar feed rightbar";
+  grid-template-areas: "leftbar content rightbar";
   grid-template-columns: 1fr 2fr 1fr;
 
   width: 1200px;

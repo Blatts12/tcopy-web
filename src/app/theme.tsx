@@ -17,10 +17,10 @@ const theme = {
     normal: "string",
     bold: "string",
     size: {
-      small: "0.85em",
-      normal: "1em",
-      big: "string",
-      bigger: "string",
+      small: "0.9rem",
+      normal: "1rem",
+      big: "1.05rem",
+      bigger: "1.1rem",
     },
   },
 };
