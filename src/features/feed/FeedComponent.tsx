@@ -21,7 +21,7 @@ interface Props {
   type: FeedType;
 }
 
-const FeedComponent: React.FC<Props> = ({ type, children }) => {
+const FeedComponent: React.FC<Props> = ({ type }) => {
   const [feedCursor, setFeedCursor] = useState("");
   const dispatch = useAppDispatch();
   const { loading, next, posts, users } = useAppSelector((state) => state.feed);

@@ -12,6 +12,10 @@ const RightbarContainer = styled.div`
   padding-left: 8px;
 
   border-left: 1px solid ${({ theme }) => theme.palette.neutral[400]};
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    display: none;
+  }
 `;
 
 const Rightbar: React.FC = () => {

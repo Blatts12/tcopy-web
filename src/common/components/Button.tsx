@@ -20,10 +20,10 @@ export const ActionButton = styled.button`
   }
 `;
 
-export const SubmitButton = styled.input.attrs((props) => ({
+export const SubmitButton = styled.input.attrs(() => ({
   type: "submit",
 }))`
-  padding: 0.4rem 1rem;
+  padding: 0.4em 1em;
 
   font-size: ${({ theme }) => theme.fonts.size[400]};
   font-weight: 600;

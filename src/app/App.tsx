@@ -19,6 +19,42 @@ const AppContainer = styled.div`
   width: 1200px;
 
   margin: 0px auto;
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.phone}) {
+    width: 400px;
+    grid-template-columns: 1fr 4fr 0fr;
+    background: red;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet_portrait}) {
+    width: 570px;
+    grid-template-columns: 1fr 4fr 0fr;
+    background: green;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.tablet_landscape}) {
+    width: 800px;
+    grid-template-columns: 1fr 4fr 0fr;
+    background: blue;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop}) {
+    grid-template-columns: 1fr 2fr 1fr;
+    width: 1100px;
+    background: yellow;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop_big}) {
+    grid-template-columns: 1fr 2fr 1fr;
+    width: 1300px;
+    background: brown;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.desktop_super_big}) {
+    grid-template-columns: 1fr 2fr 1fr;
+    width: 1600px;
+    background: white;
+  }
 `;
 
 function App() {

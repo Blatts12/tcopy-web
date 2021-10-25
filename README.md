@@ -13,4 +13,13 @@ Web frontend for tcopy - Twitter Like App
 - Redux Toolkit
 - Styled-components
 
+## Features
 
+### For v0.1
+
+- [x] Global Feed
+- [ ] User Feed
+- [ ] User Liked Feed
+- [x] Adding Posts
+- [ ] Login
+- [ ] Register
