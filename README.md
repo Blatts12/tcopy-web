@@ -21,5 +21,7 @@ Web frontend for tcopy - Twitter Like App
 - [ ] User Feed
 - [ ] User Liked Feed
 - [x] Adding Posts
-- [ ] Login
-- [ ] Register
+- [ ] Deleting Posts **WIP**
+- [ ] Login **WIP**
+- [ ] Register **WIP**
+- [ ] Likes
