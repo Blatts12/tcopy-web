@@ -5,59 +5,92 @@ import {
   ThemeProvider,
 } from "styled-components";
 
-const theme = {
+const theme: DefaultTheme = {
   breakpoints: {
-    small: "600px",
-    normal: "1000px",
-    big: "1200px",
-    bigger: "1600px",
+    phone: "37.438em",
+    tablet_portrait: "37.5em",
+    tablet_landscape: "56.26em",
+    desktop: "75em",
+    desktop_big: "112.5em",
+    desktop_super_big: "150em",
   },
   fonts: {
-    thin: "eldo",
-    normal: "string",
-    bold: "string",
     size: {
-      small: "0.9rem",
-      normal: "1rem",
-      big: "1.05rem",
-      bigger: "1.1rem",
+      100: "0.25rem",
+      200: "0.5rem",
+      300: "0.75rem",
+      400: "1rem",
+      500: "1.25rem",
+      600: "1.5rem",
+      700: "1.75rem",
+      800: "2rem",
+      900: "2.25rem",
+      1000: "2.5rem",
+      xl: "clamp(3rem, 10vw + 1rem, 10rem)",
+    },
+  },
+  palette: {
+    neutral: {
+      50: "hsl(0, 3%, 100%)",
+      100: "hsl(0, 3%, 90%)",
+      200: "hsl(0, 3%, 80%)",
+      300: "hsl(0, 3%, 70%)",
+      400: "hsl(0, 3%, 60%)",
+      500: "hsl(0, 3%, 50%)",
+      600: "hsl(0, 3%, 40%)",
+      700: "hsl(0, 3%, 30%)",
+      800: "hsl(0, 3%, 20%)",
+      900: "hsl(0, 3%, 10%)",
+      1000: "hsl(0, 3%, 0%)",
+    },
+    accent: {
+      50: "hsl(53, 100%, 100%)",
+      100: "hsl(53, 100%, 90%)",
+      200: "hsl(53, 100%, 80%)",
+      300: "hsl(53, 100%, 70%)",
+      400: "hsl(53, 100%, 60%)",
+      500: "hsl(53, 100%, 50%)",
+      600: "hsl(53, 100%, 40%)",
+      700: "hsl(53, 100%, 30%)",
+      800: "hsl(53, 100%, 20%)",
+      900: "hsl(53, 100%, 10%)",
+      1000: "hsl(53, 100%, 0%)",
+    },
+    primary: {
+      50: "hsl(351, 100%, 100%)",
+      100: "hsl(351, 100%, 90%)",
+      200: "hsl(351, 100%, 80%)",
+      300: "hsl(351, 100%, 70%)",
+      400: "hsl(351, 100%, 60%)",
+      500: "hsl(351, 100%, 50%)",
+      600: "hsl(351, 100%, 40%)",
+      700: "hsl(351, 100%, 30%)",
+      800: "hsl(351, 100%, 20%)",
+      900: "hsl(351, 100%, 10%)",
+      1000: "hsl(351, 100%, 0%)",
+    },
+    background: {
+      50: "hsl(212, 61%, 100%)",
+      100: "hsl(212, 61%, 90%)",
+      200: "hsl(212, 61%, 80%)",
+      300: "hsl(212, 61%, 70%)",
+      400: "hsl(212, 61%, 60%)",
+      500: "hsl(212, 61%, 50%)",
+      600: "hsl(212, 61%, 40%)",
+      700: "hsl(212, 61%, 30%)",
+      800: "hsl(212, 61%, 20%)",
+      900: "hsl(212, 61%, 10%)",
+      1000: "hsl(212, 61%, 0%)",
     },
   },
 };
 
-const dark: DefaultTheme = {
-  palette: {
-    background: "#011936",
-    backgroundAccent: "#01234C",
-    font: "#F4FFFD",
-    fontMuted: "#f4fffdb0",
-    primary: "#F9DC5C",
-    accent: "#ED254E",
-    border: "#9BA8B7",
-  },
-  ...theme,
-};
-
-const bright: DefaultTheme = {
-  palette: {
-    background: "black",
-    backgroundAccent: "#01234C",
-    font: "#F4FFFD",
-    fontMuted: "#f4fffdb0",
-    primary: "#F9DC5C",
-    accent: "#ED254E",
-    border: "#9BA8B7",
-  },
-  ...theme,
-};
-
 interface ThemeProps {
   children: React.ReactNode;
-  darkTheme: boolean;
 }
 
-export const Theme: React.FC<ThemeProps> = ({ children, darkTheme }) => (
-  <ThemeProvider theme={darkTheme ? dark : bright}>{children}</ThemeProvider>
+export const Theme: React.FC<ThemeProps> = ({ children }) => (
+  <ThemeProvider theme={theme}>{children}</ThemeProvider>
 );
 
 export const GlobalStyle = createGlobalStyle`
@@ -71,16 +104,24 @@ export const GlobalStyle = createGlobalStyle`
       height: 100%;
       margin: 0;
       padding: 0;
-      background: ${({ theme }) => theme.palette.background};
-      color: ${({ theme }) => theme.palette.font};
+      background: ${({ theme }) => theme.palette.background[900]};
+      color: ${({ theme }) => theme.palette.neutral[50]};
       font-family: 'Raleway', sans-serif;
+    }
+    body {
+      line-height: 1.5;
     }
 
     h1,
     h2,
     h3,
-    p {
+    h4,
+    p,
+    li {
         margin: 0;
+        padding: 0;
+        overflow-wrap: break-word;
+        hyphens: auto;
     }
 
     #root {

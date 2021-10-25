@@ -11,7 +11,7 @@ const RightbarContainer = styled.div`
   height: 100vh;
   padding-left: 8px;
 
-  border-left: 1px solid ${({ theme }) => theme.palette.border};
+  border-left: 1px solid ${({ theme }) => theme.palette.neutral[400]};
 `;
 
 const Rightbar: React.FC = () => {

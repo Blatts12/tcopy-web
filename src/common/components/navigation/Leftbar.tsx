@@ -1,12 +1,14 @@
 import React from "react";
+import { useToggle } from "react-use";
 import styled from "styled-components";
 import { ActionButton } from "../Button";
+import Modal from "../Modal";
 
 const LeftbarContainer = styled.div`
   grid-area: leftbar;
   position: sticky;
   top: 0px;
-  z-index: 1;
+  z-index: 2;
 
   display: flex;
   flex-direction: column;
@@ -17,7 +19,7 @@ const LeftbarContainer = styled.div`
   padding-right: 8px;
 
   text-align: right;
-  border-right: 1px solid ${({ theme }) => theme.palette.border};
+  border-right: 1px solid ${({ theme }) => theme.palette.neutral[400]};
 `;
 
 const SideActionButton = styled(ActionButton)`
@@ -25,11 +27,21 @@ const SideActionButton = styled(ActionButton)`
 `;
 
 const Leftbar: React.FC = () => {
+  const [openLogin, toggleOpenLogin] = useToggle(false);
+
   return (
     <LeftbarContainer>
       <div></div>
       <div>
-        <SideActionButton>Zaloguj się</SideActionButton>
+        <Modal isOpen={openLogin} closeFunction={toggleOpenLogin} title="Login">
+          <input type="text" placeholder="ELDO" />
+          <input type="text" placeholder="ELDO" />
+          <input type="text" placeholder="ELDO" />
+          <input type="text" placeholder="ELDO" />
+        </Modal>
+        <SideActionButton onClick={toggleOpenLogin}>
+          Zaloguj się
+        </SideActionButton>
         <SideActionButton>Stwórz konto</SideActionButton>
       </div>
     </LeftbarContainer>

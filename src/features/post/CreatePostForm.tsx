@@ -20,7 +20,7 @@ const FormContainer = styled.div`
 
   border-width: 0 0 1px 0;
   border-style: solid;
-  border-color: ${({ theme }) => theme.palette.border};
+  border-color: ${({ theme }) => theme.palette.neutral[400]};
 `;
 
 const AvatarContainer = styled.div`
@@ -35,8 +35,8 @@ const ContentContainer = styled.div`
   min-height: 25px;
   margin-bottom: 8px;
 
-  color: ${({ theme }) => theme.palette.font};
-  border-bottom: 3px solid ${({ theme }) => theme.palette.border};
+  color: ${({ theme }) => theme.palette.neutral[100]};
+  border-bottom: 3px solid ${({ theme }) => theme.palette.neutral[400]};
   transition: border-color 200ms ease;
 
   &:focus-within {
@@ -67,7 +67,7 @@ const ButtonContainer = styled.div`
 `;
 
 const LetterCounter = styled.span`
-  color: ${({ theme }) => theme.palette.fontMuted};
+  color: ${({ theme }) => theme.palette.neutral[400]};
 `;
 const CreatePostForm: React.FC = () => {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);

@@ -16,7 +16,7 @@ const PostContainer = styled.div`
 
   border-width: 0 0 1px 0;
   border-style: solid;
-  border-color: ${({ theme }) => theme.palette.border};
+  border-color: ${({ theme }) => theme.palette.neutral[400]};
 
   animation: fadein 1s;
 `;
@@ -33,19 +33,19 @@ const HeaderContainer = styled.div`
 `;
 
 const AuthorName = styled.span`
-  color: ${({ theme }) => theme.palette.font};
-  font-size: ${({ theme }) => theme.fonts.size.normal};
+  color: ${({ theme }) => theme.palette.neutral[300]};
+  font-size: ${({ theme }) => theme.fonts.size[400]};
 `;
 
 const AuthorTag = styled.span`
-  color: ${({ theme }) => theme.palette.fontMuted};
-  font-size: ${({ theme }) => theme.fonts.size.small};
+  color: ${({ theme }) => theme.palette.neutral[400]};
+  font-size: ${({ theme }) => theme.fonts.size[300]};
   margin-left: 6px;
 `;
 
 const PostDate = styled.span`
-  color: ${({ theme }) => theme.palette.fontMuted};
-  font-size: ${({ theme }) => theme.fonts.size.small};
+  color: ${({ theme }) => theme.palette.neutral[400]};
+  font-size: ${({ theme }) => theme.fonts.size[300]};
   margin-left: 6px;
 
   &::before {

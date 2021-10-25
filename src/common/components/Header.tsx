@@ -9,10 +9,10 @@ const HeaderContainer = styled.header`
   padding: 10px;
   z-index: 1;
 
-  background: ${({ theme }) => theme.palette.background};
+  background: ${({ theme }) => theme.palette.background[800]};
   border-width: 0 0px 2px 0px;
   border-style: solid;
-  border-color: ${({ theme }) => theme.palette.border};
+  border-color: ${({ theme }) => theme.palette.neutral[400]};
 `;
 
 interface Props {

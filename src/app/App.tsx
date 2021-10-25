@@ -22,7 +22,6 @@ const AppContainer = styled.div`
 `;
 
 function App() {
-  const [darkTheme, setDarkTheme] = useState(true);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -34,7 +33,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Theme darkTheme={darkTheme}>
+      <Theme>
         <GlobalStyle />
         <AppContainer>
           <Leftbar />

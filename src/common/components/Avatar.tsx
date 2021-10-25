@@ -6,5 +6,5 @@ export const Avatar = styled.div`
 
   border: 2px solid ${({ theme }) => theme.palette.primary};
   border-radius: 50%;
-  background: ${({ theme }) => theme.palette.backgroundAccent};
+  background: ${({ theme }) => theme.palette.background[300]};
 `;
