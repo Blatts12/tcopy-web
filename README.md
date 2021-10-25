@@ -6,12 +6,12 @@ Web frontend for tcopy - Twitter Like App
 
 - Typescript
 - React
-- React-use
-- React-Router
-- React-Virtuoso
+- React Use
+- React Router
+- React Virtuoso
 - Redux
 - Redux Toolkit
-- Styled-components
+- Styled Components
 
 ## Features
 
