@@ -20,7 +20,9 @@ const FormContainer = styled.div`
 
   border-width: 0 0 1px 0;
   border-style: solid;
-  border-color: ${({ theme }) => theme.palette.neutral[400]};
+  border-color: ${({ theme }) => theme.palette.neutral[200]};
+
+  animation: fadein 450ms;
 `;
 
 const AvatarContainer = styled.div`
@@ -35,12 +37,12 @@ const ContentContainer = styled.div`
   min-height: 25px;
   margin-bottom: 8px;
 
-  color: ${({ theme }) => theme.palette.neutral[100]};
-  border-bottom: 3px solid ${({ theme }) => theme.palette.neutral[400]};
+  color: ${({ theme }) => theme.palette.neutral[50]};
+  border-bottom: 3px solid ${({ theme }) => theme.palette.neutral[200]};
   transition: border-color 200ms ease;
 
   &:focus-within {
-    border-color: ${({ theme }) => theme.palette.primary};
+    border-color: ${({ theme }) => theme.palette.accent[400]};
   }
 `;
 
@@ -53,7 +55,7 @@ const ContentTextArea = styled.textarea`
   outline: none;
   overflow: hidden;
 
-  background: ${({ theme }) => theme.palette.background};
+  background: ${({ theme }) => theme.palette.background[900]};
   color: inherit;
   font-family: inherit;
   font-size: inherit;

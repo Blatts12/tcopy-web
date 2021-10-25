@@ -5,14 +5,13 @@ const HeaderContainer = styled.header`
   position: sticky;
   top: 0px;
 
-  height: 45px;
   padding: 10px;
   z-index: 1;
 
-  background: ${({ theme }) => theme.palette.background[800]};
+  background: ${({ theme }) => theme.palette.background[900]};
   border-width: 0 0px 2px 0px;
   border-style: solid;
-  border-color: ${({ theme }) => theme.palette.neutral[400]};
+  border-color: ${({ theme }) => theme.palette.neutral[200]};
 `;
 
 interface Props {

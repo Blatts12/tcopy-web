@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 export const ActionButton = styled.button`
   width: 100%;
-  padding: 10px;
+  padding: 0.75em;
 
-  letter-spacing: 0.05rem;
-  font-size: ${({ theme }) => theme.fonts.size[600]};
+  letter-spacing: 0.04em;
+  font-size: ${({ theme }) => theme.fonts.size[400]};
   color: ${({ theme }) => theme.palette.neutral[100]};
   background: none;
   border-radius: 24px;
@@ -15,7 +15,7 @@ export const ActionButton = styled.button`
   &:hover,
   &:focus {
     outline: none;
-    background: ${({ theme }) => theme.palette.primary[500]};
+    background: ${({ theme }) => theme.palette.primary[700]};
     cursor: pointer;
   }
 `;
@@ -23,18 +23,21 @@ export const ActionButton = styled.button`
 export const SubmitButton = styled.input.attrs((props) => ({
   type: "submit",
 }))`
-  padding: 3px 18px;
+  padding: 0.4rem 1rem;
 
   font-size: ${({ theme }) => theme.fonts.size[400]};
-  color: ${({ theme }) => theme.palette.neutral[100]};
+  font-weight: 600;
+  color: ${({ theme }) => theme.palette.neutral[900]};
 
-  background: ${({ theme }) => theme.palette.accent[500]};
+  background: ${({ theme }) => theme.palette.accent[400]};
   border: none;
   border-radius: 24px;
-  transition: outline-width 50ms linear;
+  transition: background-color 150ms linear;
 
   &:focus,
   &:hover {
-    outline: 2px solid ${({ theme }) => theme.palette.primary[400]};
+    outline: none;
+    background: ${({ theme }) => theme.palette.primary[500]};
+    color: ${({ theme }) => theme.palette.neutral[50]};
   }
 `;

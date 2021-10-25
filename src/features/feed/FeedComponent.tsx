@@ -1,16 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Virtuoso } from "react-virtuoso";
-import styled from "styled-components";
 import { useAppDispatch, useAppSelector } from "../../common/hooks/storeHooks";
 import CreatePostForm from "../post/CreatePostForm";
 import PostComponent from "../post/PostComponent";
 import { User } from "../user/userTypes";
 import { fetchFeedByCursor } from "./feedActions";
 import { FeedType } from "./feedTypes";
-
-export const FeedContainer = styled.div`
-  width: 100%;
-`;
 
 const unknownAuthor: User = {
   id: -1,
@@ -47,7 +42,7 @@ const FeedComponent: React.FC<Props> = ({ type, children }) => {
   }, []);
 
   return (
-    <FeedContainer>
+    <>
       <Virtuoso
         useWindowScroll={true}
         style={{ height: "calc(100vh - 45px)" }}
@@ -74,7 +69,7 @@ const FeedComponent: React.FC<Props> = ({ type, children }) => {
           },
         }}
       />
-    </FeedContainer>
+    </>
   );
 };
 

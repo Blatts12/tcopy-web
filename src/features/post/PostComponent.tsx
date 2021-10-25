@@ -12,13 +12,13 @@ const PostContainer = styled.div`
     "avatar content"
     "avatar content";
 
-  padding: 10px 8px;
+  padding: 0.75em;
 
   border-width: 0 0 1px 0;
   border-style: solid;
-  border-color: ${({ theme }) => theme.palette.neutral[400]};
+  border-color: ${({ theme }) => theme.palette.neutral[200]};
 
-  animation: fadein 1s;
+  animation: fadein 450ms;
 `;
 
 const AvatarContainer = styled.div`
@@ -33,18 +33,18 @@ const HeaderContainer = styled.div`
 `;
 
 const AuthorName = styled.span`
-  color: ${({ theme }) => theme.palette.neutral[300]};
+  color: ${({ theme }) => theme.palette.neutral[100]};
   font-size: ${({ theme }) => theme.fonts.size[400]};
 `;
 
 const AuthorTag = styled.span`
-  color: ${({ theme }) => theme.palette.neutral[400]};
+  color: ${({ theme }) => theme.palette.neutral[300]};
   font-size: ${({ theme }) => theme.fonts.size[300]};
   margin-left: 6px;
 `;
 
 const PostDate = styled.span`
-  color: ${({ theme }) => theme.palette.neutral[400]};
+  color: ${({ theme }) => theme.palette.neutral[300]};
   font-size: ${({ theme }) => theme.fonts.size[300]};
   margin-left: 6px;
 
