@@ -14,7 +14,7 @@ type Colors = {
   1000: string;
 };
 
-type FontSize = {
+type FontSizes = {
   100: string;
   200: string;
   300: string;
@@ -46,7 +46,7 @@ declare module "styled-components" {
       desktop_super_big: string;
     };
     fonts: {
-      size: FontSize;
+      size: FontSizes;
     };
   }
 }

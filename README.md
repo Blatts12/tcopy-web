@@ -20,7 +20,6 @@ Web frontend for tcopy - Twitter Like App
 - [ ] RWD **WIP**
 - [x] Global Feed
 - [ ] User Profiles
-- [ ] User Feed
 - [ ] User Liked Feed
 - [x] Adding Posts
 - [ ] Deleting Posts **WIP**

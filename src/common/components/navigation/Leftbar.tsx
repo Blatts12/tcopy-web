@@ -1,6 +1,7 @@
 import React from "react";
 import { useToggle } from "react-use";
 import styled from "styled-components";
+import LoginModal from "../../../features/auth/LoginModal";
 import { ActionButton } from "../Button";
 
 const LeftbarContainer = styled.div`
@@ -26,21 +27,19 @@ const ButtonConteiner = styled.div`
   flex-direction: column;
 `;
 
-const SideActionButton = styled(ActionButton)`
-  margin-bottom: 1em;
-`;
-
 const Leftbar: React.FC = () => {
   const [openLogin, toggleOpenLogin] = useToggle(false);
 
   return (
     <LeftbarContainer>
-      <ButtonConteiner></ButtonConteiner>
+      <LoginModal isOpen={openLogin} closeFunction={toggleOpenLogin} />
       <ButtonConteiner>
-        <SideActionButton onClick={toggleOpenLogin}>
-          Zaloguj się
-        </SideActionButton>
-        <SideActionButton>Stwórz konto</SideActionButton>
+        <ActionButton>Profile</ActionButton>
+        <ActionButton>TBD</ActionButton>
+      </ButtonConteiner>
+      <ButtonConteiner>
+        <ActionButton onClick={toggleOpenLogin}>Zaloguj się</ActionButton>
+        <ActionButton>Stwórz konto</ActionButton>
       </ButtonConteiner>
     </LeftbarContainer>
   );

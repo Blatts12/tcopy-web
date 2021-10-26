@@ -1,6 +1,7 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useClickAway } from "react-use";
 import styled from "styled-components";
+import useScrollBlock from "../hooks/useScrollBlock";
 
 const ModalContainer = styled.div`
   position: fixed;
@@ -59,14 +60,21 @@ const CloseButton = styled.button`
 `;
 
 interface Props {
-  title?: string;
   children?: React.ReactNode;
+  title: string;
   isOpen: boolean;
   closeFunction: () => void;
 }
 
-const Modal: React.FC<Props> = ({ children, isOpen, closeFunction, title }) => {
+const Modal: React.FC<Props> = ({ children, title, isOpen, closeFunction }) => {
+  const [blockScroll, allowScroll] = useScrollBlock();
   const modalRef = useRef(null);
+
+  useEffect(() => {
+    if (isOpen) blockScroll();
+    else allowScroll();
+  }, [blockScroll, allowScroll, isOpen]);
+
   useClickAway(modalRef, () => {
     closeFunction();
   });
