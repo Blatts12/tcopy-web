@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useToggle } from "react-use";
 import styled from "styled-components";
+import { logout } from "../../../features/auth/authActions";
 import LoginModal from "../../../features/auth/LoginModal";
-import { ActionButton } from "../Button";
+import { useAppDispatch, useAppSelector } from "../../hooks/storeHooks";
+import { ActionButton } from "../input/Button";
 
 const LeftbarContainer = styled.div`
   grid-area: leftbar;
@@ -28,7 +30,37 @@ const ButtonConteiner = styled.div`
 `;
 
 const Leftbar: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const auth = useAppSelector((state) => state.auth);
   const [openLogin, toggleOpenLogin] = useToggle(false);
+
+  const handleLogout = () => {
+    dispatch(logout())
+      .unwrap()
+      .then((result) => {
+        console.log("logout");
+      })
+      .catch((rejected) => {
+        console.log(rejected);
+      });
+  };
+
+  const userButtons = useMemo(() => {
+    if (auth.authenticated && auth.token) {
+      return (
+        <>
+          <span>Logged as {auth.user.user_tag}</span>
+          <ActionButton onClick={handleLogout}>Wyloguj się</ActionButton>
+        </>
+      );
+    }
+    return (
+      <>
+        <ActionButton onClick={toggleOpenLogin}>Zaloguj się</ActionButton>
+        <ActionButton>Stwórz konto</ActionButton>
+      </>
+    );
+  }, [auth]);
 
   return (
     <LeftbarContainer>
@@ -37,10 +69,7 @@ const Leftbar: React.FC = () => {
         <ActionButton>Profile</ActionButton>
         <ActionButton>TBD</ActionButton>
       </ButtonConteiner>
-      <ButtonConteiner>
-        <ActionButton onClick={toggleOpenLogin}>Zaloguj się</ActionButton>
-        <ActionButton>Stwórz konto</ActionButton>
-      </ButtonConteiner>
+      <ButtonConteiner>{userButtons}</ButtonConteiner>
     </LeftbarContainer>
   );
 };

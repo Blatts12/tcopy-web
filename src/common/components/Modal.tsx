@@ -20,7 +20,10 @@ const ModalContainer = styled.div`
 `;
 
 const ModalBody = styled.div`
-  padding: 0.15em 0.75em 1em 0.75em;
+  width: 25%;
+  min-width: 260px;
+
+  padding: 0.45em 1em 2.5em 1em;
 
   border-radius: 24px;
   border: 1px solid ${({ theme }) => theme.palette.neutral[200]};
@@ -32,6 +35,7 @@ const ModalContent = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: 1em;
+  padding: 0 1.5em;
 `;
 
 const ModalHeader = styled.div`
@@ -39,18 +43,18 @@ const ModalHeader = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: flex-start;
 `;
 
 const Title = styled.span`
-  font-size: ${({ theme }) => theme.fonts.size[600]};
+  font-size: ${({ theme }) => theme.fonts.size[700]};
 `;
 
 const CloseButton = styled.button`
   background: none;
   border: none;
   color: ${({ theme }) => theme.palette.neutral[50]};
-  font-size: ${({ theme }) => theme.fonts.size[500]};
+  font-size: ${({ theme }) => theme.fonts.size[600]};
 
   &:hover,
   &:focus {

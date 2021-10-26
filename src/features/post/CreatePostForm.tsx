@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { Avatar } from "../../common/components/Avatar";
-import { SubmitButton } from "../../common/components/Button";
+import { SubmitButton } from "../../common/components/input/Button";
 import { useAppDispatch, useAppSelector } from "../../common/hooks/storeHooks";
 import { createPost } from "./postActions";
 import { setNewPost } from "./postReducer";
