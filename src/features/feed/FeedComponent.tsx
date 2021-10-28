@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Virtuoso } from "react-virtuoso";
 import { useAppDispatch, useAppSelector } from "../../common/hooks/storeHooks";
-import CreatePostForm from "../post/CreatePostForm";
 import PostComponent from "../post/PostComponent";
 import { User } from "../user/userTypes";
 import { fetchFeedByCursor } from "./feedActions";
@@ -45,7 +44,7 @@ const FeedComponent: React.FC<Props> = ({ type }) => {
     <>
       <Virtuoso
         useWindowScroll={true}
-        style={{ height: "calc(100vh - 45px)" }}
+        className="feed"
         data={posts.ids}
         endReached={() => fetchMore(next)}
         itemContent={(index, postId) => {
@@ -56,18 +55,18 @@ const FeedComponent: React.FC<Props> = ({ type }) => {
             return <PostComponent key={postId} post={post} author={author} />;
           return <></>;
         }}
-        components={{
-          Header: () => <CreatePostForm />,
-          Footer: () => {
-            if (loading) {
-              return <span>Loading</span>;
-            }
-            if (!loading && !next) {
-              return <span>End</span>;
-            }
-            return <></>;
-          },
-        }}
+        // components={{
+        //   Header: () => <CreatePostForm />,
+        //   Footer: () => {
+        //     if (loading) {
+        //       return <span>Loading</span>;
+        //     }
+        //     if (!loading && !next) {
+        //       return <span>End</span>;
+        //     }
+        //     return <></>;
+        //   },
+        // }}
       />
     </>
   );

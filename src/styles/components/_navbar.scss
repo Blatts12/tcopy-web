@@ -1,0 +1,28 @@
+@use "../layouts/app" as *;
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  position: sticky;
+  top: 0;
+  z-index: 1;
+
+  height: $navbar_height;
+  min-height: 55px;
+  padding: 0.5em;
+
+  background: var(--clr-background-dark);
+  border-bottom: 1px solid var(--clr-neutral-200);
+
+  &__header {
+    width: 85%;
+    font-size: var(--fs-600);
+  }
+
+  &__avatar {
+    width: 15%;
+  }
+}

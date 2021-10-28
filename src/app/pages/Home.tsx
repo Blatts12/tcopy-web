@@ -1,19 +1,16 @@
 import React from "react";
-import styled from "styled-components";
-import Header from "../../common/components/Header";
+import Navbar from "../../common/components/navigation/Navbar";
 import FeedComponent from "../../features/feed/FeedComponent";
 import { FeedType } from "../../features/feed/feedTypes";
 
-const Container = styled.div`
-  grid-area: content;
-`;
-
 const Home: React.FC = () => {
   return (
-    <Container>
-      <Header>Najnowsze</Header>
-      <FeedComponent type={FeedType.Global} />
-    </Container>
+    <>
+      <Navbar title="Home page" />
+      <div className="home">
+        <FeedComponent type={FeedType.Global} />
+      </div>
+    </>
   );
 };
 

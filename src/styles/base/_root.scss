@@ -1,0 +1,38 @@
+@use "../abstracts/colors" as *;
+@use "../abstracts/type" as *;
+@use "../abstracts/brakepoints" as *;
+@use "../abstracts/media_queries" as *;
+
+:root {
+  @each $color, $shades in $colors {
+    @each $shade, $value in $shades {
+      --clr-#{$color}-#{$shade}: #{$value};
+    }
+  }
+
+  @each $screen-size, $font-sizes in $type-size {
+    @if $screen-size == phone {
+      @each $size, $value in $font-sizes {
+        --fs-#{$size}: #{$value};
+      }
+    } @else if $screen-size == tablet_landscape {
+      @include mq(tablet_landscape) {
+        @each $size, $value in $font-sizes {
+          --fs-#{$size}: #{$value};
+        }
+      }
+    } @else if $screen-size == desktop {
+      @include mq(desktop) {
+        @each $size, $value in $font-sizes {
+          --fs-#{$size}: #{$value};
+        }
+      }
+    } @else if $screen-size == desktop_big {
+      @include mq(desktop_big) {
+        @each $size, $value in $font-sizes {
+          --fs-#{$size}: #{$value};
+        }
+      }
+    }
+  }
+}

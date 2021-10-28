@@ -1,19 +1,5 @@
 import "styled-components";
 
-type Colors = {
-  50: string;
-  100: string;
-  200: string;
-  300: string;
-  400: string;
-  500: string;
-  600: string;
-  700: string;
-  800: string;
-  900: string;
-  1000: string;
-};
-
 type FontSizes = {
   100: string;
   200: string;
@@ -31,10 +17,12 @@ type FontSizes = {
 declare module "styled-components" {
   export interface DefaultTheme {
     palette: {
-      neutral: Colors;
-      accent: Colors;
-      primary: Colors;
-      background: Colors;
+      black: string;
+      white: string;
+      accent: string;
+      primary: string;
+      background: string;
+      warning: string;
     };
     breakpoints: {
       // https://zellwk.com/blog/media-query-units/

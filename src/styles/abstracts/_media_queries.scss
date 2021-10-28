@@ -1,0 +1,15 @@
+@use "brakepoints" as *;
+
+@mixin mq($key) {
+  $size: map-get($brakepoints, $key);
+
+  @media only screen and (min-width: $size) {
+    @content;
+  }
+}
+
+@mixin darktheme() {
+  @media (prefers-color-scheme) {
+    @content;
+  }
+}

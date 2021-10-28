@@ -1,0 +1,53 @@
+.post {
+  display: grid;
+  grid-template-columns: 1fr 9fr;
+  grid-template-areas:
+    "avatar header"
+    "avatar body"
+    "avatar body";
+
+  width: 100%;
+  padding: 0.5em;
+
+  border-bottom: 1px solid var(--clr-neutral-600);
+
+  &__avatar {
+    grid-area: avatar;
+    margin-right: 0.5em;
+  }
+
+  &__header {
+    grid-area: header;
+    min-height: 20px;
+    span + span {
+      margin-left: 0.33em;
+    }
+  }
+
+  &__name {
+    font-size: var(--fs-400);
+  }
+
+  &__tag {
+    font-size: var(--fs-300);
+    color: var(--clr-font-light-muted);
+  }
+
+  &__date {
+    font-size: var(--fs-300);
+    color: var(--clr-font-light-muted);
+    &::before {
+      content: "•  ";
+    }
+  }
+
+  &__body {
+    grid-area: body;
+    overflow: hidden;
+  }
+
+  &__content {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+  }
+}
