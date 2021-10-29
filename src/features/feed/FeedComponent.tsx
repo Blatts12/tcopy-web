@@ -55,18 +55,17 @@ const FeedComponent: React.FC<Props> = ({ type }) => {
             return <PostComponent key={postId} post={post} author={author} />;
           return <></>;
         }}
-        // components={{
-        //   Header: () => <CreatePostForm />,
-        //   Footer: () => {
-        //     if (loading) {
-        //       return <span>Loading</span>;
-        //     }
-        //     if (!loading && !next) {
-        //       return <span>End</span>;
-        //     }
-        //     return <></>;
-        //   },
-        // }}
+        components={{
+          Footer: () => {
+            if (loading) {
+              return <span>Loading</span>;
+            }
+            if (!loading && !next) {
+              return <span>End</span>;
+            }
+            return <></>;
+          },
+        }}
       />
     </>
   );

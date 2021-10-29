@@ -1,0 +1,63 @@
+@use "../abstracts/colors" as *;
+@use "../layouts/app" as *;
+
+.drawer {
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  overflow: hidden;
+
+  height: 100vh;
+
+  background: var(--clr-background-dark);
+  transition: width 500ms;
+
+  &--open {
+    width: 100%;
+  }
+
+  &--close {
+    width: 0;
+  }
+
+  &__body {
+    width: 100vw;
+    height: calc(100vh - max($navbar_height, 55px));
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 0.33em;
+
+    width: 100vw;
+    height: $navbar_height;
+    min-height: 55px;
+
+    border-bottom: 1px solid var(--clr-neutral-200);
+    font-size: var(--fs-600);
+  }
+
+  &__title_container {
+    width: 85%;
+  }
+
+  &__back_container {
+    width: 15%;
+  }
+
+  &__back {
+    width: 45px;
+    height: 45px;
+
+    background: none;
+    border: none;
+    border-radius: 50%;
+    color: var(--clr-neutral-200);
+
+    &:focus {
+      border: 2px solid var(--clr-neutral-200);
+    }
+  }
+}
