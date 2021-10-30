@@ -45,7 +45,11 @@ const LoginForm: React.FC = () => {
         className="text-input"
         type="password"
         id="password"
-        {...register("password", { required: true })}
+        {...register("password", {
+          required: true,
+          minLength: 8,
+          maxLength: 32,
+        })}
       />
       <div className="error-block">{errors.password?.message}</div>
 

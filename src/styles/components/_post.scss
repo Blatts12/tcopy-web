@@ -1,6 +1,6 @@
 .post {
   display: grid;
-  grid-template-columns: auto 100%;
+  grid-template-columns: 1fr 100fr;
   grid-template-areas:
     "avatar header"
     "avatar body"
@@ -8,8 +8,6 @@
 
   width: 100%;
   padding: 0.5em;
-
-  overflow: hidden;
 
   border-bottom: 1px solid var(--clr-neutral-600);
 
@@ -38,6 +36,7 @@
   &__date {
     font-size: var(--fs-300);
     color: var(--clr-font-light-muted);
+
     &::before {
       content: "•  ";
     }
@@ -45,7 +44,6 @@
 
   &__body {
     grid-area: body;
-    overflow: hidden;
   }
 
   &__content {

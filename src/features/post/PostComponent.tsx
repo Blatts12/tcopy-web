@@ -28,7 +28,7 @@ const PostComponent: React.FC<Props> = ({ post, author }) => {
         <span className="post__date">{parseDate(post.pub_date)}</span>
       </div>
       <div className="post__body">
-        <p className="post__content">{post.content}</p>
+        <div className="post_content">{post.content}</div>
       </div>
     </div>
   );

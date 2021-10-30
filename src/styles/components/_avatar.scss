@@ -14,4 +14,13 @@
     width: 55px;
     height: 55px;
   }
+
+  &:focus,
+  &:hover {
+    box-shadow: inset 0px 0px 8px 5px rgba(black, 0.2);
+  }
+
+  &:focus {
+    outline: auto;
+  }
 }
