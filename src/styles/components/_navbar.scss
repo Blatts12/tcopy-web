@@ -18,11 +18,11 @@
   border-bottom: 1px solid var(--clr-neutral-200);
 
   &__header {
-    width: 85%;
+    width: 100%;
     font-size: var(--fs-600);
   }
 
   &__avatar {
-    width: 15%;
+    margin-right: 15px;
   }
 }

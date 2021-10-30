@@ -1,6 +1,6 @@
 .post {
   display: grid;
-  grid-template-columns: 1fr 9fr;
+  grid-template-columns: auto 100%;
   grid-template-areas:
     "avatar header"
     "avatar body"
@@ -9,11 +9,13 @@
   width: 100%;
   padding: 0.5em;
 
+  overflow: hidden;
+
   border-bottom: 1px solid var(--clr-neutral-600);
 
   &__avatar {
     grid-area: avatar;
-    margin-right: 0.5em;
+    margin-right: 10px;
   }
 
   &__header {

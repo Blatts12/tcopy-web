@@ -4,4 +4,14 @@
   border: 2px solid var(--clr-accent-400);
   border-radius: 50%;
   background: var(--clr-background-700);
+
+  &--small {
+    width: 40px;
+    height: 40px;
+  }
+
+  &--big {
+    width: 55px;
+    height: 55px;
+  }
 }
