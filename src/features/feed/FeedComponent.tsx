@@ -43,7 +43,6 @@ const FeedComponent: React.FC<Props> = ({ type }) => {
   return (
     <>
       <Virtuoso
-        useWindowScroll={true}
         className="feed"
         data={posts.ids}
         endReached={() => fetchMore(next)}

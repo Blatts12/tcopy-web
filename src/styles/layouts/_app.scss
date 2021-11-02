@@ -1,29 +1,23 @@
 @use "../abstracts/media_queries" as *;
 
 $navbar_height: 7%;
-$page_content_height: 86%;
+$navbar_height_max: 55px;
+$page_content_height: 93%;
 $bottombar_height: 7%;
 
 #root {
   width: 100vw;
-  height: max(100vh, 100%);
+  height: 100vh;
 }
 
 .app {
   display: flex;
   flex-direction: column;
 
-  position: relative;
-
   width: 100%;
   height: 100%;
 
-  color: var(--clr-font-dark);
-  background: var(--clr-background-200);
+  color: var(--clr-font-light);
+  background: var(--clr-background-dark);
   font-family: "Raleway", sans-serif;
-
-  @include darktheme() {
-    color: var(--clr-font-light);
-    background: var(--clr-background-dark);
-  }
 }

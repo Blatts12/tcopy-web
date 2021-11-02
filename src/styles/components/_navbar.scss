@@ -6,12 +6,8 @@
   justify-content: center;
   align-items: center;
 
-  position: sticky;
-  top: 0;
-  z-index: 1;
-
   height: $navbar_height;
-  min-height: 55px;
+  min-height: $navbar_height_max;
   padding: 0.5em;
 
   background: var(--clr-background-dark);

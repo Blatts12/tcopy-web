@@ -1,3 +1,5 @@
+@use "../layouts/app" as *;
+
 .home {
-  height: 100%;
+  height: calc(100% - min($navbar_height, $navbar_height_max));
 }
