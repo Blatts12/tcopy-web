@@ -2,10 +2,9 @@ import React from "react";
 import { useToggle } from "react-use";
 import Drawer from "../../common/components/Drawer";
 import Navbar from "../../common/components/Navbar";
-import LoginForm from "../../features/auth/LoginForm";
-import RegisterForm from "../../features/auth/RegisterForm";
 import FeedComponent from "../../features/feed/FeedComponent";
 import { FeedType } from "../../features/feed/feedTypes";
+import CreatePostForm from "../../features/post/CreatePostForm";
 
 const Home: React.FC = () => {
   const [openDrawer, toggleOpenDrawer] = useToggle(false);
@@ -21,8 +20,7 @@ const Home: React.FC = () => {
         open={openDrawer}
         closeFunction={toggleOpenDrawer}
       >
-        {/* <RegisterForm /> */}
-        <LoginForm />
+        <CreatePostForm />
       </Drawer>
     </>
   );

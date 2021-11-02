@@ -1,32 +1,42 @@
 import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import Drawer from "../../common/components/Drawer";
 import { useAppDispatch } from "../../common/hooks/storeHooks";
 import { registerUser } from "./authActions";
-import { RegisterAuthErrors } from "./authTypes";
 
-type RegisterInputs = {
+interface RegisterInputs {
   email: string;
   user_tag: string;
   display_name: string;
   password: string;
   password_confirm: string;
-};
+}
 
-const RegisterForm: React.FC = () => {
+interface Props {
+  closeFunction?: () => void;
+}
+
+const RegisterForm: React.FC<Props> = ({ closeFunction }) => {
   const dispatch = useAppDispatch();
   const [nonFieldErrors, setNonFieldErrors] = useState<string>("");
   const {
     register,
     handleSubmit,
     setError,
+    reset,
     formState: { errors },
   } = useForm<RegisterInputs>();
 
   const onSubmit: SubmitHandler<RegisterInputs> = (data) => {
     dispatch(registerUser(data))
       .unwrap()
-      .then((result) => {})
-      .catch((resultErrors: RegisterAuthErrors) => {
+      .then((result) => {
+        reset();
+        if (closeFunction) {
+          closeFunction();
+        }
+      })
+      .catch((resultErrors) => {
         if (resultErrors.non_field_errors) {
           setNonFieldErrors(resultErrors.non_field_errors.join("\n"));
           delete resultErrors.non_field_errors;

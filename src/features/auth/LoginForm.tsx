@@ -3,18 +3,23 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useAppDispatch } from "../../common/hooks/storeHooks";
 import { loginUser } from "./authActions";
 
-type LoginInputs = {
+interface LoginInputs {
   email: string;
   password: string;
-};
+}
 
-const LoginForm: React.FC = () => {
+interface Props {
+  closeFunction?: () => void;
+}
+
+const LoginForm: React.FC<Props> = ({ closeFunction }) => {
   const dispatch = useAppDispatch();
   const [nonFieldErrors, setNonFieldErrors] = useState<string>("");
   const {
     register,
     handleSubmit,
     setError,
+    reset,
     formState: { errors },
   } = useForm<LoginInputs>();
 
@@ -22,7 +27,10 @@ const LoginForm: React.FC = () => {
     dispatch(loginUser(data))
       .unwrap()
       .then((result) => {
-        window.location.reload();
+        reset();
+        if (closeFunction) {
+          closeFunction();
+        }
       })
       .catch((resultErrors) => {
         if (resultErrors.non_field_errors) {
