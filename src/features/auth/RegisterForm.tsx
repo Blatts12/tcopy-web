@@ -1,0 +1,102 @@
+import React, { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { useAppDispatch } from "../../common/hooks/storeHooks";
+import { registerUser } from "./authActions";
+import { RegisterAuthErrors } from "./authTypes";
+
+type RegisterInputs = {
+  email: string;
+  user_tag: string;
+  display_name: string;
+  password: string;
+  password_confirm: string;
+};
+
+const RegisterForm: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const [nonFieldErrors, setNonFieldErrors] = useState<string>("");
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors },
+  } = useForm<RegisterInputs>();
+
+  const onSubmit: SubmitHandler<RegisterInputs> = (data) => {
+    dispatch(registerUser(data))
+      .unwrap()
+      .then((result) => {})
+      .catch((resultErrors: RegisterAuthErrors) => {
+        if (resultErrors.non_field_errors) {
+          setNonFieldErrors(resultErrors.non_field_errors.join("\n"));
+          delete resultErrors.non_field_errors;
+        }
+        for (const field in resultErrors) {
+          switch (field) {
+            case "email":
+            case "password":
+            case "display_name":
+            case "user_tag":
+              setError(field, {
+                message: resultErrors[field]?.join("\n"),
+              });
+          }
+        }
+      });
+  };
+
+  return (
+    <form className="form form--login" onSubmit={handleSubmit(onSubmit)}>
+      <label htmlFor="email">Email</label>
+      <input
+        className="text-input"
+        type="email"
+        id="email"
+        {...register("email", { required: true })}
+      />
+      <div className="error-block">{errors.email?.message}</div>
+      <label htmlFor="user_tag">User Tag</label>
+      <input
+        className="text-input"
+        type="text"
+        id="user_tag"
+        {...register("user_tag", { required: true })}
+      />
+      <div className="error-block">{errors.user_tag?.message}</div>
+      <label htmlFor="display_name">Display Name</label>
+      <input
+        className="text-input"
+        type="text"
+        id="display_name"
+        {...register("display_name", { required: true })}
+      />
+      <div className="error-block">{errors.display_name?.message}</div>
+      <label htmlFor="password">Password</label>
+      <input
+        className="text-input"
+        type="password"
+        id="password"
+        {...register("password", { required: true })}
+      />
+      <div className="error-block">{errors.password?.message}</div>
+      <label htmlFor="password_confirm">Confirm Password</label>
+      <input
+        className="text-input"
+        type="password"
+        id="password_confirm"
+        {...register("password_confirm", { required: true })}
+      />
+      <div className="error-block">{errors.password_confirm?.message}</div>
+
+      <input
+        className="button button--login"
+        type="submit"
+        value="Zarejestruj się"
+      />
+
+      <div className="error-block">{nonFieldErrors}</div>
+    </form>
+  );
+};
+
+export default RegisterForm;

@@ -22,14 +22,14 @@ export const loadUser = createAsyncThunk(
   }
 );
 
-interface Credentials {
+interface LoginCredentials {
   email: string;
   password: string;
 }
 
-export const login = createAsyncThunk(
+export const loginUser = createAsyncThunk(
   "auth/login",
-  async (credentials: Credentials, { rejectWithValue }) => {
+  async (credentials: LoginCredentials, { rejectWithValue }) => {
     const data = await fetch(loginUrl, {
       method: "POST",
       headers: {
@@ -49,13 +49,17 @@ export const login = createAsyncThunk(
 interface RegisterCredentials {
   email: string;
   password: string;
+  password_confirm: string;
   user_tag: string;
   display_name: string;
 }
 
-export const register = createAsyncThunk(
+export const registerUser = createAsyncThunk(
   "auth/register",
   async (registerCredentials: RegisterCredentials, { rejectWithValue }) => {
+    if (registerCredentials.password !== registerCredentials.password_confirm)
+      return rejectWithValue("Passwords don't match");
+
     const data = await fetch(registerUrl, {
       method: "POST",
       headers: {
@@ -72,7 +76,7 @@ export const register = createAsyncThunk(
   }
 );
 
-export const logout = createAsyncThunk(
+export const logoutUser = createAsyncThunk(
   "auth/logout",
   async (_, { getState }) => {
     await fetch(logoutUrl, {

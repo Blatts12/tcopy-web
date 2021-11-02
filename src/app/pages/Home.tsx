@@ -3,6 +3,7 @@ import { useToggle } from "react-use";
 import Drawer from "../../common/components/Drawer";
 import Navbar from "../../common/components/Navbar";
 import LoginForm from "../../features/auth/LoginForm";
+import RegisterForm from "../../features/auth/RegisterForm";
 import FeedComponent from "../../features/feed/FeedComponent";
 import { FeedType } from "../../features/feed/feedTypes";
 
@@ -15,7 +16,12 @@ const Home: React.FC = () => {
       <div className="home">
         <FeedComponent type={FeedType.Global} />
       </div>
-      <Drawer title="Login" open={openDrawer} closeFunction={toggleOpenDrawer}>
+      <Drawer
+        title="Register"
+        open={openDrawer}
+        closeFunction={toggleOpenDrawer}
+      >
+        {/* <RegisterForm /> */}
         <LoginForm />
       </Drawer>
     </>
