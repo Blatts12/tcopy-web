@@ -46,18 +46,4 @@
   &__back_container {
     width: 15%;
   }
-
-  &__back {
-    width: 45px;
-    height: 45px;
-
-    background: none;
-    border: none;
-    border-radius: 50%;
-    color: var(--clr-neutral-200);
-
-    &:focus {
-      border: 2px solid var(--clr-neutral-200);
-    }
-  }
 }

@@ -12,3 +12,26 @@
     margin-left: 25%;
   }
 }
+
+.button--circle {
+  display: flex;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: 50%;
+
+  font-size: var(--fs-800);
+  color: var(--clr-font-light);
+
+  &:hover {
+    color: var(--clr-font-light-muted);
+  }
+
+  &:focus {
+    outline: auto;
+  }
+
+  &--back {
+    margin-left: 5px;
+  }
+}

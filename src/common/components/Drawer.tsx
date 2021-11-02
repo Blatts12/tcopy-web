@@ -1,4 +1,5 @@
 import React from "react";
+import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 
 interface Props {
   children: React.ReactNode;
@@ -12,8 +13,11 @@ const Drawer: React.FC<Props> = ({ children, title, open, closeFunction }) => {
     <div className={`drawer ${open ? "drawer--open" : "drawer--close"}`}>
       <div className="drawer__header">
         <div className="drawer__back_container">
-          <button className="drawer__back" onClick={closeFunction}>
-            &lt;
+          <button
+            className="button--circle button--circle--back"
+            onClick={closeFunction}
+          >
+            <BsFillArrowLeftCircleFill />
           </button>
         </div>
         <div className="drawer__title_container">{title}</div>

@@ -1,5 +1,6 @@
 import React from "react";
 import { useAppSelector } from "../hooks/storeHooks";
+import { BsPlusCircleFill } from "react-icons/bs";
 
 interface Props {
   title: string;
@@ -15,7 +16,9 @@ const Navbar: React.FC<Props> = ({ title, openDrawer }) => {
         <div className="avatar" tabIndex={0}></div>
       </div>
       <header className="navbar__header">{`${title} [${user.display_name}]`}</header>
-      <button onClick={openDrawer}>L</button>
+      <button className="button--circle" onClick={openDrawer}>
+        <BsPlusCircleFill />
+      </button>
     </nav>
   );
 };
