@@ -6,23 +6,37 @@ Web frontend for tcopy - Twitter Like App
 
 - Typescript
 - React
-- React Use
 - React Router
 - React Virtuoso
+- React Use
+- React Icons
 - Redux
 - Redux Toolkit
-- Styled Components
+- SASS
 
 ## Features
 
 ### For v0.1
 
-- [ ] RWD **WIP**
 - [x] Global Feed
-- [ ] User Profiles
-- [ ] User Liked Feed
+- [ ] User Profiles **WIP**
 - [x] Adding Posts
+- [x] Login
+- [x] Register
 - [ ] Deleting Posts **WIP**
-- [ ] Login **WIP**
-- [ ] Register **WIP**
-- [ ] Likes
+- [ ] Post Page
+
+### Upcoming v0.2
+
+- [ ] Liking
+- [ ] Liked Feed
+
+### Upcoming v0.3
+
+- [ ] Following
+- [ ] Followed Feed
+
+### Upcoming v0.4
+
+- [ ] Commenting
+- [ ] Comment tree
