@@ -29,15 +29,15 @@ Web frontend for tcopy - Twitter Like App
 
 ### Upcoming v0.2
 
-- [ ] Liking
+- [ ] Likes
 - [ ] Liked Feed
 
 ### Upcoming v0.3
 
-- [ ] Following
+- [ ] Followers
 - [ ] Followed Feed
 
 ### Upcoming v0.4
 
-- [ ] Commenting
+- [ ] Comments
 - [ ] Comment tree
