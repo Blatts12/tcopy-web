@@ -3,11 +3,11 @@ import { FeedDto, FeedType } from "./feedTypes";
 
 const feedUrls = (type: FeedType): string => {
   switch (type) {
-    case FeedType.Global:
+    case "global":
       return "http://127.0.0.1:8000/api/feed/global/";
-    case FeedType.UserLiked:
+    case "user":
       return "http://127.0.0.1:8000/api/feed/global/";
-    case FeedType.UserFollowed:
+    case "followed":
       return "http://127.0.0.1:8000/api/feed/global/";
     default:
       return "http://127.0.0.1:8000/api/feed/global/";

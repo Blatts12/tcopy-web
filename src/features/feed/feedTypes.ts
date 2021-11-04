@@ -16,8 +16,4 @@ export type Feed = {
   loading: boolean;
 };
 
-export enum FeedType {
-  Global,
-  UserLiked,
-  UserFollowed,
-}
+export type FeedType = "global" | "user" | "followed";

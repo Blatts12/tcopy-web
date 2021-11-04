@@ -6,16 +6,6 @@ import { User } from "../user/userTypes";
 import { fetchFeedByCursor } from "./feedActions";
 import { FeedType } from "./feedTypes";
 
-const unknownAuthor: User = {
-  id: -1,
-  display_name: "unknown",
-  user_tag: "unknown",
-  date_joined: "unknown",
-  last_login: "unknown",
-  email: "unknown",
-  is_staff: false,
-};
-
 interface Props {
   type: FeedType;
 }
@@ -48,10 +38,13 @@ const FeedComponent: React.FC<Props> = ({ type }) => {
         endReached={() => fetchMore(next)}
         itemContent={(index, postId) => {
           const post = posts.entities[postId];
-          const author = post ? users.entities[post.author] : unknownAuthor;
+          const author = post ? users.entities[post.author] : null;
 
           if (author && post)
             return <PostComponent key={postId} post={post} author={author} />;
+          console.error(
+            `Author or Post not found: \nPost: ${post} \nAuthor: ${author}`
+          );
           return <></>;
         }}
         components={{

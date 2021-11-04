@@ -3,22 +3,21 @@ import { useToggle } from "react-use";
 import Drawer from "../../common/components/Drawer";
 import Navbar from "../../common/components/Navbar";
 import FeedComponent from "../../features/feed/FeedComponent";
-import { FeedType } from "../../features/feed/feedTypes";
 import CreatePostForm from "../../features/post/CreatePostForm";
 
 const Home: React.FC = () => {
-  const [openDrawer, toggleOpenDrawer] = useToggle(false);
+  const [openAddPost, toggleAddPost] = useToggle(false);
 
   return (
     <>
-      <Navbar title="Home page" openDrawer={toggleOpenDrawer} />
+      <Navbar title="Home page" openDrawer={toggleAddPost} />
       <div className="home">
-        <FeedComponent type={FeedType.Global} />
+        <FeedComponent type="global" />
       </div>
       <Drawer
-        title="Register"
-        open={openDrawer}
-        closeFunction={toggleOpenDrawer}
+        title="Dodaj post"
+        open={openAddPost}
+        closeFunction={toggleAddPost}
       >
         <CreatePostForm />
       </Drawer>
