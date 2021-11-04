@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Virtuoso } from "react-virtuoso";
 import { useAppDispatch, useAppSelector } from "../../common/hooks/storeHooks";
 import PostComponent from "../post/PostComponent";
-import { User } from "../user/userTypes";
 import { fetchFeedByCursor } from "./feedActions";
 import { FeedType } from "./feedTypes";
 

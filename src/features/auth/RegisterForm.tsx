@@ -99,7 +99,7 @@ const RegisterForm: React.FC<Props> = ({ closeFunction }) => {
       <div className="error-block">{errors.password_confirm?.message}</div>
 
       <input
-        className="button button--login"
+        className="button button--submit"
         type="submit"
         value="Zarejestruj się"
       />

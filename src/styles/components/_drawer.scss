@@ -4,6 +4,7 @@
 .drawer {
   position: fixed;
   top: 0;
+  left: 0;
   overflow: hidden;
 
   height: 100vh;
@@ -22,6 +23,11 @@
   &__body {
     width: 100vw;
     height: calc(100vh - max($navbar_height, 55px));
+    padding: 1em;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 
   &__header {
@@ -39,10 +45,10 @@
   }
 
   &__title_container {
-    width: 85%;
+    width: 100%;
   }
 
   &__back_container {
-    width: 15%;
+    min-width: 55px;
   }
 }

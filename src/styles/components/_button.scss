@@ -1,15 +1,28 @@
 .button {
   padding: 0.3em;
 
-  background: none;
+  background: var(--clr-background-700);
   border: none;
   border-radius: 24px;
   color: var(--clr-font-light);
+  letter-spacing: 0.04em;
+  transition: background-color 150ms ease-in;
 
-  &--login {
-    background: var(--clr-background-700);
+  &:hover {
+    background: var(--clr-background-500);
+  }
+
+  &--submit {
     width: 50%;
     margin-left: 25%;
+  }
+
+  &--action {
+    width: 100%;
+  }
+
+  &--big {
+    font-size: var(--fs-500);
   }
 }
 

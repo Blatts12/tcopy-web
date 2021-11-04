@@ -73,7 +73,7 @@ const LoginForm: React.FC<Props> = ({ closeFunction }) => {
       />
       <div className="error-block">{errors.password?.message}</div>
 
-      <input className="button button--login" type="submit" value="Login" />
+      <input className="button button--submit" type="submit" value="Login" />
 
       <div className="error-block text-center">{nonFieldErrors}</div>
     </form>
