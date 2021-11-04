@@ -23,6 +23,7 @@ Web frontend for tcopy - Twitter Like App
 - [x] Adding Posts
 - [x] Login
 - [x] Register
+- [x] Logout
 - [ ] Deleting Posts **WIP**
 - [ ] Post Page
 
