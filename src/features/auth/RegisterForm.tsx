@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import Drawer from "../../common/components/Drawer";
 import { useAppDispatch } from "../../common/hooks/storeHooks";
 import { registerUser } from "./authActions";
 
