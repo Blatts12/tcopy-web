@@ -34,7 +34,7 @@ const PostComponent = React.memo(({ post, author }: Props) => {
         </span>
       </div>
       <div className="post__body">
-        <div className="post_content">{post.content}</div>
+        <div className="post__content">{post.content}</div>
       </div>
     </div>
   );

@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Virtuoso } from "react-virtuoso";
+import Loading from "../../common/components/Loading";
+import NoMoreContent from "../../common/components/NoMoreContent";
 import { useAppDispatch, useAppSelector } from "../../common/hooks/storeHooks";
 import PostComponent from "../post/PostComponent";
 import { fetchFeedByCursor } from "./feedActions";
@@ -45,10 +47,10 @@ const FeedComponent: React.FC<Props> = ({ type }) => {
       components={{
         Footer: () => {
           if (loading) {
-            return <span>Loading</span>;
+            return <Loading />;
           }
           if (!loading && !next) {
-            return <span>End</span>;
+            return <NoMoreContent />;
           }
           return <></>;
         },

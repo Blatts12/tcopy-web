@@ -1,0 +1,16 @@
+.nomorecontent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+
+  font-size: var(--fs-600);
+
+  & svg {
+    font-size: var(--fs-800);
+  }
+}
