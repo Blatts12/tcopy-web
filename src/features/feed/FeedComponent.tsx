@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Virtuoso } from "react-virtuoso";
+import AuthorNotFoundError from "../../common/errors/AuhtorNotFound";
+import PostNotFoundError from "../../common/errors/PostNotFound";
 import { useAppDispatch, useAppSelector } from "../../common/hooks/storeHooks";
 import PostComponent from "../post/PostComponent";
 import { fetchFeedByCursor } from "./feedActions";
@@ -41,10 +43,14 @@ const FeedComponent: React.FC<Props> = ({ type }) => {
 
         if (author && post)
           return <PostComponent key={postId} post={post} author={author} />;
-        console.error(
-          `Author or Post not found: \nPost: ${post} \nAuthor: ${author}`
-        );
-        return <></>;
+
+        if (!post) {
+          throw new PostNotFoundError(postId);
+        }
+
+        if (!author) {
+          throw new AuthorNotFoundError(post);
+        }
       }}
       components={{
         Footer: () => {
