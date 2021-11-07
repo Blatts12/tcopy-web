@@ -1,10 +1,6 @@
 .post {
-  display: grid;
-  grid-template-columns: 1fr 100fr;
-  grid-template-areas:
-    "avatar header"
-    "avatar body"
-    "avatar body";
+  display: flex;
+  flex-direction: row;
 
   width: 100%;
   padding: 0.5em;
@@ -12,8 +8,12 @@
   border-bottom: 1px solid var(--clr-neutral-600);
 
   &__avatar {
-    grid-area: avatar;
-    margin-right: 10px;
+    min-width: 48px;
+    max-width: 48px;
+  }
+
+  &__body {
+    width: calc(100% - 48px);
   }
 
   &__header {
@@ -21,7 +21,7 @@
     grid-area: header;
     min-height: 20px;
     span + span {
-      margin-left: 0.33em;
+      padding-left: 0.3em;
     }
   }
 
@@ -62,10 +62,6 @@
     &:focus {
       outline: auto;
     }
-  }
-
-  &__body {
-    grid-area: body;
   }
 
   &__content {

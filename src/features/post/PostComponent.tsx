@@ -23,17 +23,18 @@ const PostComponent = React.memo(({ post, author }: Props) => {
       <div className="post__avatar">
         <div className="avatar avatar--small"></div>
       </div>
-      <div className="post__header">
-        <span className="post__name">{author.display_name}</span>
-        <span className="post__tag">@{author.user_tag}</span>
-        <a className="post__date" href="/">
-          {parseDate(post.pub_date)}
-        </a>
-        <span className="post__more" tabIndex={0}>
-          <FiMoreHorizontal />
-        </span>
-      </div>
       <div className="post__body">
+        <div className="post__header">
+          <span className="post__name">{author.display_name}</span>
+          <span className="post__tag">@{author.user_tag}</span>
+          <a className="post__date" href="/">
+            {parseDate(post.pub_date)}
+          </a>
+          <span className="post__more" tabIndex={0}>
+            <FiMoreHorizontal />
+          </span>
+        </div>
+
         <div className="post__content">{post.content}</div>
       </div>
     </div>
