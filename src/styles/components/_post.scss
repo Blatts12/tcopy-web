@@ -17,6 +17,7 @@
   }
 
   &__header {
+    position: relative;
     grid-area: header;
     min-height: 20px;
     span + span {
@@ -29,16 +30,37 @@
   }
 
   &__tag {
+    margin-right: 4px;
     font-size: var(--fs-300);
     color: var(--clr-font-light-muted);
   }
 
   &__date {
+    text-decoration: none;
     font-size: var(--fs-300);
     color: var(--clr-font-light-muted);
 
     &::before {
       content: "•  ";
+    }
+  }
+
+  &__more {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: var(--fs-500);
+
+    display: flex;
+
+    border-radius: 50%;
+
+    &:hover {
+      color: var(--clr-font-light-muted);
+    }
+
+    &:focus {
+      outline: auto;
     }
   }
 

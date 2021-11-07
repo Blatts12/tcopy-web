@@ -23,42 +23,41 @@ const FeedComponent: React.FC<Props> = ({ type }) => {
     };
   }, [dispatch, type, feedCursor]);
 
-  const fetchMore = useCallback((next) => {
+  const fetchMore = useCallback(() => {
     if (!next) return;
     const url = new URL(next);
     setFeedCursor(url.searchParams.get("cursor") || "");
-  }, []);
+  }, [next]);
 
   return (
-    <>
-      <Virtuoso
-        className="feed"
-        data={posts.ids}
-        endReached={() => fetchMore(next)}
-        itemContent={(index, postId) => {
-          const post = posts.entities[postId];
-          const author = post ? users.entities[post.author] : null;
+    <Virtuoso
+      className="feed"
+      data={posts.ids}
+      endReached={fetchMore}
+      overscan={3}
+      itemContent={(index, postId) => {
+        const post = posts.entities[postId];
+        const author = post ? users.entities[post.author] : null;
 
-          if (author && post)
-            return <PostComponent key={postId} post={post} author={author} />;
-          console.error(
-            `Author or Post not found: \nPost: ${post} \nAuthor: ${author}`
-          );
+        if (author && post)
+          return <PostComponent key={postId} post={post} author={author} />;
+        console.error(
+          `Author or Post not found: \nPost: ${post} \nAuthor: ${author}`
+        );
+        return <></>;
+      }}
+      components={{
+        Footer: () => {
+          if (loading) {
+            return <span>Loading</span>;
+          }
+          if (!loading && !next) {
+            return <span>End</span>;
+          }
           return <></>;
-        }}
-        components={{
-          Footer: () => {
-            if (loading) {
-              return <span>Loading</span>;
-            }
-            if (!loading && !next) {
-              return <span>End</span>;
-            }
-            return <></>;
-          },
-        }}
-      />
-    </>
+        },
+      }}
+    />
   );
 };
 
