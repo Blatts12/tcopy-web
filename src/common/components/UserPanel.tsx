@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo } from "react";
+import { Link } from "react-router-dom";
 import { useToggle } from "react-use";
 import { logoutUser } from "../../features/auth/authActions";
 import LoginForm from "../../features/auth/LoginForm";
@@ -56,6 +57,12 @@ const UserPanel: React.FC = () => {
     () => (
       <>
         <span>{`Witaj, ${user.user_tag}`}</span>
+        <Link
+          to={`/${user.user_tag}`}
+          className="button button--action button--big"
+        >
+          Profil
+        </Link>
         <button
           className="button button--action button--big"
           onClick={handleLogout}
