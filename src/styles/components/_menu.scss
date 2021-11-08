@@ -1,0 +1,43 @@
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 1000;
+
+  height: 100vh;
+  width: 100%;
+  background: rgba(black, 0.575);
+
+  &__body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1001;
+
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--clr-neutral-600);
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+
+    background: var(--clr-background-dark);
+  }
+
+  &__close {
+    margin-bottom: 0.8rem;
+  }
+
+  &__content {
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      top: -0.4rem;
+      left: 3%;
+      width: 96%;
+      height: 1px;
+      background: var(--clr-neutral-600);
+    }
+  }
+}

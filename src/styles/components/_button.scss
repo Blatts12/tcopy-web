@@ -17,6 +17,22 @@
     margin-left: 25%;
   }
 
+  &--menu {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+
+    background: none;
+    font-size: var(--fs-500);
+    text-align: left;
+
+    & svg {
+      font-size: var(--fs-600);
+      margin-right: 10px;
+    }
+  }
+
   &--action {
     width: 100%;
   }

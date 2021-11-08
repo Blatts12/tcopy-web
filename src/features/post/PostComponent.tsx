@@ -15,9 +15,10 @@ const parseDate = (dateString: string) => {
 interface Props {
   post: Post;
   author: User;
+  selectPost: (post: Post, author: User) => void;
 }
 
-const PostComponent = React.memo(({ post, author }: Props) => {
+const PostComponent = React.memo(({ post, author, selectPost }: Props) => {
   return (
     <div className="post">
       <div className="post__avatar">
@@ -30,7 +31,11 @@ const PostComponent = React.memo(({ post, author }: Props) => {
           <a className="post__date" href="/">
             {parseDate(post.pub_date)}
           </a>
-          <span className="post__more" tabIndex={0}>
+          <span
+            className="post__more"
+            tabIndex={0}
+            onClick={() => selectPost(post, author)}
+          >
             <FiMoreHorizontal />
           </span>
         </div>
