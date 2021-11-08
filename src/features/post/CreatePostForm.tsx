@@ -80,7 +80,11 @@ const CreatePostForm: React.FC<Props> = ({ closeFunction }) => {
         {...rest}
       />
       <div className="error-block">{errors.content?.message}</div>
-      <input type="submit" value="Dodaj post" />
+      <input
+        className="button button--submit"
+        type="submit"
+        value="Dodaj post"
+      />
       <div className="error-block text-center">{nonFieldErrors}</div>
     </form>
   );

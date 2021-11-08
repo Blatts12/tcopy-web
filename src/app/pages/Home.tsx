@@ -19,7 +19,7 @@ const Home: React.FC = () => {
         open={openAddPost}
         closeFunction={toggleAddPost}
       >
-        <CreatePostForm />
+        <CreatePostForm closeFunction={toggleAddPost} />
       </Drawer>
     </>
   );

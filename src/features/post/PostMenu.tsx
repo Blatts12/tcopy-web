@@ -5,7 +5,7 @@ import {
   BsFillTrashFill,
 } from "react-icons/bs";
 import Menu from "../../common/components/Menu";
-import { useAppDispatch } from "../../common/hooks/storeHooks";
+import { useAppDispatch, useAppSelector } from "../../common/hooks/storeHooks";
 import { User } from "../user/userTypes";
 import { deletePost } from "./postActions";
 import { Post } from "./postTypes";
@@ -18,6 +18,7 @@ interface Props {
 
 const PostMenu = React.memo(({ post, author, closeMenu }: Props) => {
   const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.auth.user);
 
   const onDeletePost = useCallback(
     (post: Post) => {
@@ -32,13 +33,16 @@ const PostMenu = React.memo(({ post, author, closeMenu }: Props) => {
 
   return (
     <Menu closeFunction={closeMenu}>
-      <button
-        className="button button--menu"
-        onClick={() => onDeletePost(post)}
-      >
-        <BsFillTrashFill />
-        Usuń
-      </button>
+      {user.id === author.id && (
+        <button
+          className="button button--menu"
+          onClick={() => onDeletePost(post)}
+        >
+          <BsFillTrashFill />
+          Usuń
+        </button>
+      )}
+
       <button className="button button--menu">
         <BsFillCursorFill />
         Otwórz
