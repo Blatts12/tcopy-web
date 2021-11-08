@@ -1,5 +1,5 @@
 import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
-import { createPost } from "../post/postActions";
+import { createPost, deletePost } from "../post/postActions";
 import { Post, PostDto } from "../post/postTypes";
 import { User } from "../user/userTypes";
 import { fetchFeedByCursor } from "./feedActions";
@@ -46,9 +46,6 @@ const feedSlice = createSlice({
       .addCase(fetchFeedByCursor.pending, (state, action) => {
         state.loading = true;
       })
-      .addCase(fetchFeedByCursor.rejected, (state, action) => {
-        console.log(action.payload);
-      })
       .addCase(createPost.fulfilled, (state, action) => {
         const author: User = action.payload.author;
         const post: Post = { ...action.payload, author: author.id };
@@ -57,8 +54,8 @@ const feedSlice = createSlice({
         state.posts.ids.unshift(post.id);
         state.posts.entities[post.id] = post;
       })
-      .addCase(createPost.rejected, (state, action) => {
-        console.log(action.payload);
+      .addCase(deletePost.fulfilled, (state, action) => {
+        postAdapter.removeOne(state.posts, action.payload.id);
       });
   },
 });
