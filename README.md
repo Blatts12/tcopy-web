@@ -20,11 +20,12 @@ Web frontend for tcopy - Twitter Like App
 
 - [x] Global Feed
 - [ ] User Profiles **WIP**
+- [ ] User Post Feed
 - [x] Adding Posts
 - [x] Login
 - [x] Register
 - [x] Logout
-- [ ] Deleting Posts **WIP**
+- [x] Deleting Posts
 - [ ] Post Page
 
 ### Upcoming v0.2
