@@ -8,17 +8,10 @@
   overflow: hidden;
 
   height: 100vh;
+  width: 100%;
 
   background: var(--clr-background-dark);
   transition: width 500ms;
-
-  &--open {
-    width: 100%;
-  }
-
-  &--close {
-    width: 0;
-  }
 
   &__body {
     width: 100vw;

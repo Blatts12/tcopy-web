@@ -4,7 +4,6 @@ import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 interface Props {
   children: React.ReactNode;
   title: string;
-  open: boolean;
   closeFunction: () => void;
   zIndex?: number;
 }
@@ -12,15 +11,11 @@ interface Props {
 const Drawer: React.FC<Props> = ({
   children,
   title,
-  open,
   closeFunction,
   zIndex = 0,
 }) => {
   return (
-    <div
-      className={`drawer ${open ? "drawer--open" : "drawer--close"}`}
-      style={{ zIndex: zIndex + 10 }}
-    >
+    <div className="drawer" style={{ zIndex: zIndex + 10 }}>
       <div className="drawer__header">
         <div className="drawer__back_container">
           <button

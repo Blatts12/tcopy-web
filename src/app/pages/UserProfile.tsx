@@ -1,29 +1,19 @@
-import React, { useCallback } from "react";
-import { BsFillArrowLeftCircleFill } from "react-icons/bs";
+import React from "react";
 import { useNavigate, useParams } from "react-router";
+import Drawer from "../../common/components/Drawer";
 
 const UserProfile: React.FC = () => {
   const params = useParams();
   const navigate = useNavigate();
 
-  const goHome = useCallback(() => {
-    navigate("/");
-  }, [navigate]);
-
   return (
-    <div className="user_profile">
-      <header className="drawer__header">
-        <div className="drawer__back_container">
-          <button
-            className="button--circle button--circle--back"
-            onClick={goHome}
-          >
-            <BsFillArrowLeftCircleFill />
-          </button>
-        </div>
-        <div className="drawer__title_container">{params.user_tag}</div>
-      </header>
-    </div>
+    <Drawer
+      zIndex={1}
+      title={`${params.user_tag}`}
+      closeFunction={() => navigate("/")}
+    >
+      {params.user_tag}
+    </Drawer>
   );
 };
 
