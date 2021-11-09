@@ -38,7 +38,7 @@ const UserPanel: React.FC = () => {
       <>
         <span>Witaj, {user.user_tag}</span>
         <button
-          onClick={() => navigate(`/user/${user.id}`)}
+          onClick={() => navigate(`/user/${user.user_tag}`)}
           className="button button--action button--big"
         >
           Profil

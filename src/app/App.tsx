@@ -25,7 +25,7 @@ function App() {
       <div className="app">
         <Routes>
           <Route path="/" element={<Home />}>
-            <Route path="user/:user_tag">
+            <Route path="user">
               <Route path=":user_tag" element={<UserProfile />} />
             </Route>
             <Route path="add_post" element={<AddPost />} />
