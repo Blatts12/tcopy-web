@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useAppDispatch } from "../../common/hooks/storeHooks";
+import { useAppDispatch, useAppSelector } from "../../common/hooks/storeHooks";
 import { registerUser } from "./authActions";
 
 interface RegisterInputs {
@@ -16,6 +16,9 @@ interface Props {
 }
 
 const RegisterForm: React.FC<Props> = ({ closeFunction }) => {
+  const loadingRegister = useAppSelector(
+    (state) => state.auth.ui.loadingRegister
+  );
   const dispatch = useAppDispatch();
   const [nonFieldErrors, setNonFieldErrors] = useState<string>("");
   const {
@@ -97,11 +100,17 @@ const RegisterForm: React.FC<Props> = ({ closeFunction }) => {
       />
       <div className="error-block">{errors.password_confirm?.message}</div>
 
-      <input
+      <button
         className="button button--submit"
         type="submit"
-        value="Zarejestruj się"
-      />
+        disabled={loadingRegister}
+      >
+        {loadingRegister ? (
+          <div className="button__loading"></div>
+        ) : (
+          "Zarejestruj się"
+        )}
+      </button>
 
       <div className="error-block">{nonFieldErrors}</div>
     </form>

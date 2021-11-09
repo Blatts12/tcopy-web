@@ -1,6 +1,8 @@
 .button {
   padding: 0.5em;
 
+  min-height: 40px;
+
   background: var(--clr-background-700);
   border: none;
   border-radius: 24px;
@@ -39,6 +41,30 @@
 
   &--big {
     font-size: var(--fs-500);
+  }
+
+  &__loading {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &::after {
+      content: "";
+      position: absolute;
+
+      width: 1.4rem;
+      height: 1.4rem;
+
+      border: 3px solid var(--clr-background-700);
+      border-top: 3px solid var(--clr-accent-500);
+      border-radius: 50%;
+
+      animation: spin 1s ease-in-out infinite;
+    }
   }
 }
 

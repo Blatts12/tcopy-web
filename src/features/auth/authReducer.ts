@@ -5,7 +5,11 @@ import { AuthState } from "./authTypes";
 const initialState: AuthState = {
   token: localStorage.getItem("token"),
   authenticated: false,
-  loading: false,
+  ui: {
+    loadingLoad: false,
+    loadingLogin: false,
+    loadingRegister: false,
+  },
   user: {
     id: -1,
     email: "",
@@ -23,31 +27,40 @@ const authSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(loginUser.pending, (state, action) => {
+        state.ui.loadingLogin = true;
+      })
       .addCase(loginUser.fulfilled, (state, action) => {
         localStorage.setItem("token", action.payload.token);
         state.token = action.payload.token;
         state.authenticated = true;
-        state.loading = false;
+        state.ui.loadingLogin = false;
+        state.user = action.payload.user;
+      })
+      .addCase(loadUser.pending, (state, action) => {
+        state.ui.loadingLoad = true;
+      })
+      .addCase(loadUser.fulfilled, (state, action) => {
+        state.authenticated = true;
+        state.ui.loadingLoad = false;
+        state.user = action.payload;
+      })
+      .addCase(registerUser.pending, (state, action) => {
+        state.ui.loadingRegister = true;
+      })
+      .addCase(registerUser.fulfilled, (state, action) => {
+        localStorage.setItem("token", action.payload.token);
+        state.token = action.payload.token;
+        state.authenticated = true;
+        state.ui.loadingRegister = false;
         state.user = action.payload.user;
       })
       .addCase(logoutUser.fulfilled, (state, action) => {
         localStorage.removeItem("token");
         state.token = null;
         state.authenticated = false;
-        state.loading = false;
+        state.ui = initialState.ui;
         state.user = initialState.user;
-      })
-      .addCase(loadUser.fulfilled, (state, action) => {
-        state.authenticated = true;
-        state.loading = false;
-        state.user = action.payload;
-      })
-      .addCase(registerUser.fulfilled, (state, action) => {
-        localStorage.setItem("token", action.payload.token);
-        state.token = action.payload.token;
-        state.authenticated = true;
-        state.loading = false;
-        state.user = action.payload.user;
       });
   },
 });

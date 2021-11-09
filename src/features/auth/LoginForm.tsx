@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useAppDispatch } from "../../common/hooks/storeHooks";
+import { useAppDispatch, useAppSelector } from "../../common/hooks/storeHooks";
 import { loginUser } from "./authActions";
 
 interface LoginInputs {
@@ -13,6 +13,7 @@ interface Props {
 }
 
 const LoginForm: React.FC<Props> = ({ closeFunction }) => {
+  const loadingLogin = useAppSelector((state) => state.auth.ui.loadingLogin);
   const dispatch = useAppDispatch();
   const [nonFieldErrors, setNonFieldErrors] = useState<string>("");
   const {
@@ -60,7 +61,7 @@ const LoginForm: React.FC<Props> = ({ closeFunction }) => {
       />
       <div className="error-block">{errors.email?.message}</div>
 
-      <label htmlFor="password">Password</label>
+      <label htmlFor="password">Hasło</label>
       <input
         className="text-input"
         type="password"
@@ -73,7 +74,13 @@ const LoginForm: React.FC<Props> = ({ closeFunction }) => {
       />
       <div className="error-block">{errors.password?.message}</div>
 
-      <input className="button button--submit" type="submit" value="Login" />
+      <button
+        className="button button--submit"
+        type="submit"
+        disabled={loadingLogin}
+      >
+        {loadingLogin ? <div className="button__loading"></div> : "Zaloguj się"}
+      </button>
 
       <div className="error-block text-center">{nonFieldErrors}</div>
     </form>
