@@ -2,6 +2,7 @@ import React from "react";
 import { User } from "../user/userTypes";
 import { Post } from "./postTypes";
 import { FiMoreHorizontal } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const parseDate = (dateString: string) => {
   const date = new Date(dateString);
@@ -26,8 +27,12 @@ const PostComponent = React.memo(({ post, author, selectPost }: Props) => {
       </div>
       <div className="post__body">
         <div className="post__header">
-          <span className="post__name">{author.display_name}</span>
-          <span className="post__tag">@{author.user_tag}</span>
+          <Link to={`/user/${author.user_tag}`} className="post__name">
+            {author.display_name}
+          </Link>
+          <Link to={`/user/${author.user_tag}`} className="post__tag">
+            @{author.user_tag}
+          </Link>
           <a className="post__date" href="/">
             {parseDate(post.pub_date)}
           </a>
