@@ -9,6 +9,7 @@ import AddPost from "./pages/AddPost";
 import UserPanel from "./pages/UserPanel";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import ProtectedElement from "../common/components/ProtectedElement";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -28,7 +29,14 @@ function App() {
             <Route path="user">
               <Route path=":user_tag" element={<UserProfile />} />
             </Route>
-            <Route path="add_post" element={<AddPost />} />
+            <Route
+              path="add_post"
+              element={
+                <ProtectedElement>
+                  <AddPost />
+                </ProtectedElement>
+              }
+            />
             <Route path="user_panel" element={<UserPanel />}>
               <Route path="login" element={<Login />} />
               <Route path="register" element={<Register />} />

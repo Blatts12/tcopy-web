@@ -12,7 +12,7 @@ interface CreatePost {
 
 export const createPost = createAsyncThunk(
   "post/create",
-  async (post: CreatePost) => {
+  async (post: CreatePost, { rejectWithValue }) => {
     const postDto: PostDto = await fetch(createPostUrl, {
       method: "POST",
       headers: {
@@ -22,7 +22,11 @@ export const createPost = createAsyncThunk(
         content: post.content,
         author_id: post.author.id,
       }),
-    }).then((res) => res.json());
+    })
+      .then((res) => res.json())
+      .catch((err) => {
+        return rejectWithValue(err);
+      });
 
     return postDto;
   }
@@ -31,12 +35,12 @@ export const createPost = createAsyncThunk(
 export const deletePost = createAsyncThunk(
   "post/delete",
   async (post: Post, { rejectWithValue }) => {
-    const result = await fetch(deletePostUrl + post.id, {
+    const result = await fetch(deletePostUrl + post.id + "/", {
       method: "DELETE",
     }).then((res) => res);
 
     if (result.status !== 204) {
-      rejectWithValue("Unexpected error");
+      return rejectWithValue("Unexpected error");
     }
 
     return post;

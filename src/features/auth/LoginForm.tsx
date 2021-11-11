@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../common/hooks/storeHooks";
 import { loginUser } from "./authActions";
 
@@ -83,6 +84,10 @@ const LoginForm: React.FC<Props> = ({ closeFunction }) => {
       </button>
 
       <div className="error-block text-center">{nonFieldErrors}</div>
+
+      <p>
+        Nie masz konta? <Link to="/user_panel/register">Załóż teraz</Link>
+      </p>
     </form>
   );
 };
