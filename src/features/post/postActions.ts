@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import tokenConfig from "../auth/token/tokenConfig";
 import { User } from "../user/userTypes";
 import { Post, PostDto } from "./postTypes";
 
@@ -12,12 +13,10 @@ interface CreatePost {
 
 export const createPost = createAsyncThunk(
   "post/create",
-  async (post: CreatePost, { rejectWithValue }) => {
+  async (post: CreatePost, { getState, rejectWithValue }) => {
     const postDto: PostDto = await fetch(createPostUrl, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: tokenConfig(getState),
       body: JSON.stringify({
         content: post.content,
         author_id: post.author.id,
@@ -34,9 +33,10 @@ export const createPost = createAsyncThunk(
 
 export const deletePost = createAsyncThunk(
   "post/delete",
-  async (post: Post, { rejectWithValue }) => {
+  async (post: Post, { getState, rejectWithValue }) => {
     const result = await fetch(deletePostUrl + post.id + "/", {
       method: "DELETE",
+      headers: tokenConfig(getState),
     }).then((res) => res);
 
     if (result.status !== 204) {
