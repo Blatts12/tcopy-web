@@ -4,11 +4,12 @@ Web frontend for tcopy - Twitter Like App
 
 ## Stack
 
+- Vite
 - Typescript
 - React
 - React Router
 - React Virtuoso
-- React Use
+- React Hook Form
 - React Icons
 - Redux
 - Redux Toolkit

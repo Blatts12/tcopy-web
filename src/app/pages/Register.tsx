@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import Drawer from "../../common/components/Drawer";
 import RegisterForm from "../../features/auth/RegisterForm";
 
