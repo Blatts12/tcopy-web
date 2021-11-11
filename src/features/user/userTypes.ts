@@ -9,3 +9,12 @@ export type User = {
   last_login: string | null;
   date_joined: string;
 };
+
+export type UserDto = {
+  id: EntityId;
+  user_tag: string;
+  display_name: string;
+  is_staff: boolean;
+  last_login: string | null;
+  date_joined: string;
+};
