@@ -52,7 +52,7 @@ const LoginForm: React.FC<Props> = ({ closeFunction }) => {
   };
 
   return (
-    <form className="form form--login" onSubmit={handleSubmit(onSubmit)}>
+    <form className="form" onSubmit={handleSubmit(onSubmit)}>
       <label htmlFor="email">Email</label>
       <input
         className="text-input"
@@ -80,13 +80,16 @@ const LoginForm: React.FC<Props> = ({ closeFunction }) => {
         type="submit"
         disabled={loadingLogin}
       >
-        {loadingLogin ? <div className="button__loading"></div> : "Zaloguj się"}
+        {loadingLogin ? <div className="button__loading"></div> : "Log In"}
       </button>
 
       <div className="error-block text-center">{nonFieldErrors}</div>
 
       <p>
-        Nie masz konta? <Link to="/user_panel/register">Załóż teraz</Link>
+        Don't have an account?{" "}
+        <Link className="link" to="/user_panel/register">
+          Create now
+        </Link>
       </p>
     </form>
   );

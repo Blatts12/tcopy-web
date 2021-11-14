@@ -15,12 +15,13 @@
     height: 55px;
   }
 
-  &:focus,
   &:hover {
     box-shadow: inset 0px 0px 8px 5px rgba(black, 0.2);
+    cursor: pointer;
   }
 
   &:focus {
+    box-shadow: inset 0px 0px 8px 5px rgba(black, 0.2);
     outline: auto;
   }
 }

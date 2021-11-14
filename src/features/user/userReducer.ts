@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchUser } from "./userActions";
+import { fetchUserByUserTag } from "./userActions";
 import { User } from "./userTypes";
 
-const initialState: { user: User } = {
+const initialState: { user: User; ui: { loading: boolean } } = {
   user: {
     id: -1,
     date_joined: "",
@@ -12,6 +12,9 @@ const initialState: { user: User } = {
     user_tag: "",
     is_staff: false,
   },
+  ui: {
+    loading: false,
+  },
 };
 
 const userSlice = createSlice({
@@ -19,9 +22,14 @@ const userSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchUser.fulfilled, (state, action) => {
-      state.user = state.user;
-    });
+    builder
+      .addCase(fetchUserByUserTag.pending, (state, action) => {
+        state.ui.loading = true;
+      })
+      .addCase(fetchUserByUserTag.fulfilled, (state, action) => {
+        state.ui.loading = false;
+        state.user = action.payload;
+      });
   },
 });
 

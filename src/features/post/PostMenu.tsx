@@ -39,17 +39,17 @@ const PostMenu = React.memo(({ post, author, closeMenu }: Props) => {
           onClick={() => onDeletePost(post)}
         >
           <BsFillTrashFill />
-          Usuń
+          Delete
         </button>
       )}
 
       <button className="button button--menu">
         <BsFillCursorFill />
-        Otwórz
+        Open
       </button>
       <button className="button button--menu">
         <BsFillShareFill />
-        Kopiuj odnośnik
+        Get link
       </button>
     </Menu>
   );

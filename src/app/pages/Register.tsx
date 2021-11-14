@@ -9,11 +9,7 @@ const Register: React.FC = () => {
   const from = "/user_panel";
 
   return (
-    <Drawer
-      zIndex={2}
-      title="Stwórz konto"
-      closeFunction={() => navigate(from)}
-    >
+    <Drawer zIndex={2} title="Sign up" closeFunction={() => navigate(from)}>
       <RegisterForm closeFunction={() => navigate(from)} />
     </Drawer>
   );

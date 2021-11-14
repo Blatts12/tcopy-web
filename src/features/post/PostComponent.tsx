@@ -3,6 +3,7 @@ import { User } from "../user/userTypes";
 import { Post } from "./postTypes";
 import { FiMoreHorizontal } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 const parseDate = (dateString: string) => {
   const date = new Date(dateString);
@@ -20,20 +21,29 @@ interface Props {
 }
 
 const PostComponent = React.memo(({ post, author, selectPost }: Props) => {
+  const navigate = useNavigate();
+
   return (
     <div className="post">
       <div className="post__avatar">
-        <div className="avatar avatar--small"></div>
+        <div
+          className="avatar avatar--small"
+          tabIndex={0}
+          onClick={() => navigate(`/user/${author.user_tag}`)}
+        ></div>
       </div>
       <div className="post__body">
         <div className="post__header">
-          <Link to={`/user/${author.user_tag}`} className="post__name">
+          <Link
+            to={`/user/${author.user_tag}`}
+            className="post__name link--underline"
+          >
             {author.display_name}
           </Link>
           <Link to={`/user/${author.user_tag}`} className="post__tag">
             @{author.user_tag}
           </Link>
-          <a className="post__date" href="/">
+          <a className="post__date link--underline" href="/">
             {parseDate(post.pub_date)}
           </a>
           <span

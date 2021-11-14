@@ -10,7 +10,7 @@ const Login: React.FC = () => {
   const from = location.state?.from?.pathname || "/user_panel";
 
   return (
-    <Drawer zIndex={2} title="Zaloguj się" closeFunction={() => navigate(from)}>
+    <Drawer zIndex={2} title="Login" closeFunction={() => navigate(from)}>
       <LoginForm closeFunction={() => navigate(from)} />
     </Drawer>
   );

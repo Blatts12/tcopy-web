@@ -10,6 +10,7 @@ import UserPanel from "./pages/UserPanel";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ProtectedElement from "../common/components/ProtectedElement";
+import PostPage from "./pages/PostPage";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -27,7 +28,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}>
             <Route path="user">
-              <Route path=":user_tag" element={<UserProfile />} />
+              <Route path=":user_tag" element={<UserProfile />}>
+                <Route path=":post_id" element={<PostPage />} />
+              </Route>
             </Route>
             <Route
               path="add_post"

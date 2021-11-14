@@ -12,6 +12,7 @@
 
   &:hover {
     background: var(--clr-background-500);
+    cursor: pointer;
   }
 
   &--submit {
@@ -80,6 +81,7 @@
 
   &:hover {
     color: var(--clr-font-light-muted);
+    cursor: pointer;
   }
 
   &:focus {

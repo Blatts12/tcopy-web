@@ -6,7 +6,7 @@ import FeedComponent from "../../features/feed/FeedComponent";
 const Home: React.FC = () => {
   return (
     <>
-      <Navbar title="Home page" />
+      <Navbar title="Latest" />
       <div className="home">
         <FeedComponent type="global" />
       </div>

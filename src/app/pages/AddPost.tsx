@@ -7,7 +7,11 @@ const AddPost: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <Drawer zIndex={1} title="Dodaj post" closeFunction={() => navigate("/")}>
+    <Drawer
+      zIndex={1}
+      title="Share your thought"
+      closeFunction={() => navigate("/")}
+    >
       <CreatePostForm closeFunction={() => navigate("/")} />
     </Drawer>
   );

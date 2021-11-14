@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../common/hooks/storeHooks";
 import { registerUser } from "./authActions";
 
@@ -47,6 +48,7 @@ const RegisterForm: React.FC<Props> = ({ closeFunction }) => {
           switch (field) {
             case "email":
             case "password":
+            case "password_confirm":
             case "display_name":
             case "user_tag":
               setError(field, {
@@ -58,7 +60,7 @@ const RegisterForm: React.FC<Props> = ({ closeFunction }) => {
   };
 
   return (
-    <form className="form form--login" onSubmit={handleSubmit(onSubmit)}>
+    <form className="form" onSubmit={handleSubmit(onSubmit)}>
       <label htmlFor="email">Email</label>
       <input
         className="text-input"
@@ -105,14 +107,17 @@ const RegisterForm: React.FC<Props> = ({ closeFunction }) => {
         type="submit"
         disabled={loadingRegister}
       >
-        {loadingRegister ? (
-          <div className="button__loading"></div>
-        ) : (
-          "Zarejestruj się"
-        )}
+        {loadingRegister ? <div className="button__loading"></div> : "Sign Up"}
       </button>
 
       <div className="error-block">{nonFieldErrors}</div>
+
+      <p>
+        Already have an account?{" "}
+        <Link className="link" to="/user_panel/login">
+          Log In
+        </Link>
+      </p>
     </form>
   );
 };

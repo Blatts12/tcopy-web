@@ -5,7 +5,7 @@ const NoMoreContent: React.FC = () => {
   return (
     <div className="nomorecontent">
       <BiSad />
-      <span>Koniec</span>
+      <span>The End</span>
     </div>
   );
 };

@@ -71,7 +71,7 @@ const CreatePostForm: React.FC<Props> = ({ closeFunction }) => {
     <form className="form" onSubmit={handleSubmit(onSubmit)}>
       <textarea
         className="post-area"
-        placeholder="O czym myślisz?"
+        placeholder="What are you thinking about?"
         maxLength={512}
         ref={(e) => {
           ref(e);
@@ -80,11 +80,7 @@ const CreatePostForm: React.FC<Props> = ({ closeFunction }) => {
         {...rest}
       />
       <div className="error-block">{errors.content?.message}</div>
-      <input
-        className="button button--submit"
-        type="submit"
-        value="Dodaj post"
-      />
+      <input className="button button--submit" type="submit" value="Post" />
       <div className="error-block text-center">{nonFieldErrors}</div>
     </form>
   );

@@ -20,13 +20,13 @@ const UserPanel: React.FC = () => {
           className="button button--action button--big"
           onClick={() => navigate("login")}
         >
-          Zaloguj
+          Login
         </button>
         <button
           className="button button--action button--big"
           onClick={() => navigate("register")}
         >
-          Stwórz konto
+          Sign up
         </button>
       </>
     ),
@@ -41,13 +41,13 @@ const UserPanel: React.FC = () => {
           onClick={() => navigate(`/user/${user.user_tag}`)}
           className="button button--action button--big"
         >
-          Profil
+          Profile
         </button>
         <button
           className="button button--action button--big"
           onClick={handleLogout}
         >
-          Wyloguj się
+          Logout
         </button>
       </>
     ),
@@ -55,7 +55,7 @@ const UserPanel: React.FC = () => {
   );
 
   return (
-    <Drawer zIndex={1} title="Twój panel" closeFunction={() => navigate("/")}>
+    <Drawer zIndex={1} title="User Panel" closeFunction={() => navigate("/")}>
       {authenticated ? authUser : unauthUser}
       <Outlet />
     </Drawer>

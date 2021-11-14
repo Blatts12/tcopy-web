@@ -30,6 +30,9 @@ const authSlice = createSlice({
       .addCase(loginUser.pending, (state, action) => {
         state.ui.loadingLogin = true;
       })
+      .addCase(loginUser.rejected, (state, action) => {
+        state.ui.loadingLogin = false;
+      })
       .addCase(loginUser.fulfilled, (state, action) => {
         localStorage.setItem("token", action.payload.token);
         state.token = action.payload.token;
@@ -40,6 +43,9 @@ const authSlice = createSlice({
       .addCase(loadUser.pending, (state, action) => {
         state.ui.loadingLoad = true;
       })
+      .addCase(loadUser.rejected, (state, action) => {
+        state.ui.loadingLoad = false;
+      })
       .addCase(loadUser.fulfilled, (state, action) => {
         state.authenticated = true;
         state.ui.loadingLoad = false;
@@ -47,6 +53,9 @@ const authSlice = createSlice({
       })
       .addCase(registerUser.pending, (state, action) => {
         state.ui.loadingRegister = true;
+      })
+      .addCase(registerUser.rejected, (state, action) => {
+        state.ui.loadingRegister = false;
       })
       .addCase(registerUser.fulfilled, (state, action) => {
         localStorage.setItem("token", action.payload.token);

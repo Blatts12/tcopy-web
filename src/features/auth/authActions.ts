@@ -58,7 +58,7 @@ export const registerUser = createAsyncThunk(
   "auth/register",
   async (registerCredentials: RegisterCredentials, { rejectWithValue }) => {
     if (registerCredentials.password !== registerCredentials.password_confirm)
-      return rejectWithValue("Passwords don't match");
+      return rejectWithValue({ password_confirm: ["Passwords don't match"] });
 
     const data = await fetch(registerUrl, {
       method: "POST",

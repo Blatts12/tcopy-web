@@ -19,7 +19,7 @@ const Menu = React.memo(({ children, closeFunction }: Props) => {
       <div className="menu__body">
         <div className="menu__close">
           <button className="button button--action" onClick={closeFunction}>
-            Zamknij
+            Close
           </button>
         </div>
         <div className="menu__content">{children}</div>

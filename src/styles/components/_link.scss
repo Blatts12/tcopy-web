@@ -1,0 +1,9 @@
+.link {
+  color: var(--clr-accent-500);
+}
+
+.link--underline {
+  &:hover {
+    text-decoration: underline;
+  }
+}
