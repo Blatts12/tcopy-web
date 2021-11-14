@@ -36,14 +36,15 @@
     text-decoration: none;
   }
 
+  &__dot {
+    font-size: var(--fs-300);
+    color: var(--clr-font-light-muted);
+  }
+
   &__date {
     font-size: var(--fs-300);
     color: var(--clr-font-light-muted);
     text-decoration: none;
-
-    &::before {
-      content: "•  ";
-    }
   }
 
   &__more {

@@ -43,6 +43,7 @@ const PostComponent = React.memo(({ post, author, selectPost }: Props) => {
           <Link to={`/user/${author.user_tag}`} className="post__tag">
             @{author.user_tag}
           </Link>
+          <span className="post__dot">•</span>
           <Link
             to={`/user/${author.user_tag}/${post.id}`}
             className="post__date link--underline"
