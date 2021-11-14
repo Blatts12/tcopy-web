@@ -28,9 +28,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}>
             <Route path="user">
-              <Route path=":user_tag" element={<UserProfile />}>
-                <Route path=":post_id" element={<PostPage />} />
-              </Route>
+              <Route path=":user_tag" element={<UserProfile />} />
+              <Route path=":user_tag/:post_id" element={<PostPage />} />
             </Route>
             <Route
               path="add_post"
