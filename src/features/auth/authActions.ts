@@ -1,10 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import tokenConfig from "./token/tokenConfig";
 
-const loadUserUrl = "http://127.0.0.1:8000/api/auth/user";
-const loginUrl = "http://127.0.0.1:8000/api/auth/login";
-const registerUrl = "http://127.0.0.1:8000/api/auth/register";
-const logoutUrl = "http://127.0.0.1:8000/api/auth/logout";
+const apiUrl = import.meta.env.VITE_API_URL;
+
+const loadUserUrl = `${apiUrl}/api/auth/user`;
+const loginUrl = `${apiUrl}/api/auth/login`;
+const registerUrl = `${apiUrl}/api/auth/register`;
+const logoutUrl = `${apiUrl}/api/auth/logout`;
 
 export const loadUser = createAsyncThunk(
   "auth/loadUser",

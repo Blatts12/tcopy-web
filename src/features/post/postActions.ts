@@ -3,8 +3,10 @@ import tokenConfig from "../auth/token/tokenConfig";
 import { User } from "../user/userTypes";
 import { Post, PostDto } from "./postTypes";
 
-const createPostUrl = "http://127.0.0.1:8000/api/posts/";
-const deletePostUrl = "http://127.0.0.1:8000/api/posts/";
+const apiUrl = import.meta.env.VITE_API_URL;
+
+const createPostUrl = `${apiUrl}/api/posts/`;
+const deletePostUrl = `${apiUrl}/api/posts/`;
 
 interface CreatePost {
   content: string;

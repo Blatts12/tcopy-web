@@ -1,7 +1,11 @@
 import { createAsyncThunk, EntityId } from "@reduxjs/toolkit";
 import { User, UserDto } from "./userTypes";
 
-const fetchUserUrl = "http://127.0.0.1:8000/api/users/user_tag/";
+const apiUrl = import.meta.env.VITE_API_URL;
+
+const fetchUserUrl = `${apiUrl}/api/users/user_tag/`;
+
+console.log(fetchUserUrl);
 
 export const fetchUserByUserTag = createAsyncThunk(
   "user/fetch",
