@@ -1,6 +1,6 @@
 import { EntityId } from "@reduxjs/toolkit";
 
-export type User = {
+export type AuthenticatedUser = {
   id: EntityId;
   email: string;
   user_tag: string;
@@ -10,7 +10,7 @@ export type User = {
   date_joined: string;
 };
 
-export type UserDto = {
+export type User = {
   id: EntityId;
   user_tag: string;
   display_name: string;
@@ -18,3 +18,16 @@ export type UserDto = {
   last_login: string | null;
   date_joined: string;
 };
+
+export type UserState = {
+  user: User;
+  ui: {
+    loading: boolean;
+  };
+};
+
+export type FetchUserByUserTagAction = {
+  user_tag: string;
+};
+
+export type FetchUserByUserTagResponse = User;

@@ -20,7 +20,7 @@ const UserProfile: React.FC = () => {
 
   useEffect(() => {
     const loadUserPromise = dispatch(
-      fetchUserByUserTag(user_tag ? user_tag : "")
+      fetchUserByUserTag({ user_tag: user_tag || "" })
     );
     loadUserPromise.unwrap().then((result) => {
       if (!result.id) navigate("/");

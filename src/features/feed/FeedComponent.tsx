@@ -14,11 +14,21 @@ interface Props {
   type: FeedType;
 }
 
+interface MenuState {
+  post: Post | null;
+  author: User | null;
+}
+
 const FeedComponent: React.FC<Props> = ({ type }) => {
   const [feedCursor, setFeedCursor] = useState("");
   const dispatch = useAppDispatch();
-  const { loading, next, posts, users } = useAppSelector((state) => state.feed);
-  const [menu, setMenu] = useState<{ post: Post | null; author: User | null }>({
+  const {
+    ui: { loading },
+    next,
+    posts,
+    users,
+  } = useAppSelector((state) => state.feed);
+  const [menu, setMenu] = useState<MenuState>({
     post: null,
     author: null,
   });

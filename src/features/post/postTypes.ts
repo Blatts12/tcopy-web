@@ -1,12 +1,6 @@
 import { User } from "../user/userTypes";
 import { EntityId } from "@reduxjs/toolkit";
 
-export type PostState = {
-  newPost: {
-    content: string;
-  };
-};
-
 export type PostDto = {
   id: EntityId;
   author: User;
@@ -20,3 +14,22 @@ export type Post = {
   content: string;
   pub_date: string;
 };
+
+export type CreatePostAction = {
+  content: string;
+  author: User;
+};
+
+export type CreatePostResponse = PostDto;
+
+export type FetchPostAction = {
+  id: EntityId;
+};
+
+export type FetchPostResponse = PostDto;
+
+export type DeletePostAction = {
+  post: Post;
+};
+
+export type DeletePostResponse = Post;

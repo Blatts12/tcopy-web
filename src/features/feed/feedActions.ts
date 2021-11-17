@@ -1,5 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { FeedDto, FeedType } from "./feedTypes";
+import axios, { AxiosError } from "axios";
+import getRejectValueFromError from "../getRejectValueFromError";
+import {
+  FeedType,
+  FetchFeedByCursorAction,
+  FetchFeedByCursorResponse,
+} from "./feedTypes";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -16,18 +22,14 @@ const feedUrls = (type: FeedType): string => {
   }
 };
 
-interface FetchFeedAction {
-  cursor: string;
-  type: FeedType;
-}
-
 export const fetchFeedByCursor = createAsyncThunk(
   "feed/fetchByCursor",
-  async ({ cursor, type }: FetchFeedAction) => {
-    const data: FeedDto = await fetch(
-      `${feedUrls(type)}?cursor=${cursor}`
-    ).then((res) => res.json());
-
-    return data;
+  async ({ cursor, type }: FetchFeedByCursorAction, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(`${feedUrls(type)}?cursor=${cursor}`);
+      return response.data as FetchFeedByCursorResponse;
+    } catch (err) {
+      return rejectWithValue(getRejectValueFromError(err as AxiosError));
+    }
   }
 );

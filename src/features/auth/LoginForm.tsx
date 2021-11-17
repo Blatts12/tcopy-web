@@ -28,23 +28,23 @@ const LoginForm: React.FC<Props> = ({ closeFunction }) => {
   const onSubmit: SubmitHandler<LoginInputs> = (data) => {
     dispatch(loginUser(data))
       .unwrap()
-      .then((result) => {
+      .then((_) => {
         reset();
         if (closeFunction) {
           closeFunction();
         }
       })
-      .catch((resultErrors) => {
-        if (resultErrors.non_field_errors) {
-          setNonFieldErrors(resultErrors.non_field_errors.join("\n"));
-          delete resultErrors.non_field_errors;
+      .catch((errors) => {
+        if (errors.non_field_errors) {
+          setNonFieldErrors(errors.non_field_errors.join("\n"));
+          delete errors.non_field_errors;
         }
-        for (const field in resultErrors) {
+        for (const field in errors) {
           switch (field) {
             case "email":
             case "password":
               setError(field, {
-                message: resultErrors[field]?.join("\n"),
+                message: errors[field]?.join("\n"),
               });
           }
         }

@@ -24,9 +24,9 @@ const PostMenu = React.memo(({ post, author, closeMenu }: Props) => {
 
   const onDeletePost = useCallback(
     (post: Post) => {
-      dispatch(deletePost(post))
+      dispatch(deletePost({ post }))
         .unwrap()
-        .then((result) => {
+        .then((_) => {
           closeMenu();
         });
     },

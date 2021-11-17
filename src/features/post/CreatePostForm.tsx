@@ -40,19 +40,19 @@ const CreatePostForm: React.FC<Props> = ({ closeFunction }) => {
     } else {
       dispatch(createPost({ content: parsedContent, author: user }))
         .unwrap()
-        .then((result) => {
+        .then((_) => {
           reset();
           if (closeFunction) {
             closeFunction();
           }
         })
-        .catch((resultErrors) => {
-          if (resultErrors.non_field_errors) {
-            setNonFieldErrors(resultErrors.non_field_errors.join("\n"));
+        .catch((errors) => {
+          if (errors.non_field_errors) {
+            setNonFieldErrors(errors.non_field_errors.join("\n"));
           }
-          if (resultErrors.content) {
+          if (errors.content) {
             setError("content", {
-              message: resultErrors.content.join("\n"),
+              message: errors.content.join("\n"),
             });
           }
         });

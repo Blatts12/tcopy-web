@@ -1,6 +1,17 @@
 import { EntityState } from "@reduxjs/toolkit";
 import { Post, PostDto } from "../post/postTypes";
 import { User } from "../user/userTypes";
+export type FeedType = "global" | "user" | "followed";
+
+export type FeedState = {
+  next: string | null;
+  previous: string | null;
+  posts: EntityState<Post>;
+  users: EntityState<User>;
+  ui: {
+    loading: boolean;
+  };
+};
 
 export type FeedDto = {
   next: string | null;
@@ -8,12 +19,9 @@ export type FeedDto = {
   results: PostDto[];
 };
 
-export type Feed = {
-  next: string | null;
-  previous: string | null;
-  posts: EntityState<Post>;
-  users: EntityState<User>;
-  loading: boolean;
+export type FetchFeedByCursorAction = {
+  cursor: string;
+  type: FeedType;
 };
 
-export type FeedType = "global" | "user" | "followed";
+export type FetchFeedByCursorResponse = FeedDto;

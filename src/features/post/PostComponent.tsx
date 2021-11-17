@@ -8,7 +8,7 @@ import { useNavigate } from "react-router";
 const parseDate = (dateString: string) => {
   const date = new Date(dateString);
 
-  return new Intl.DateTimeFormat("pl-PL", {
+  return new Intl.DateTimeFormat("en-US", {
     dateStyle: "short",
     timeStyle: "short",
   }).format(date);

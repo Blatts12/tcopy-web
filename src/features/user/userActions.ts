@@ -1,22 +1,23 @@
-import { createAsyncThunk, EntityId } from "@reduxjs/toolkit";
-import { User, UserDto } from "./userTypes";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios, { AxiosError } from "axios";
+import getRejectValueFromError from "../getRejectValueFromError";
+import {
+  FetchUserByUserTagAction,
+  FetchUserByUserTagResponse,
+} from "./userTypes";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
-const fetchUserUrl = `${apiUrl}/api/users/user_tag/`;
+const fetchUserByUserTagUrl = `${apiUrl}/api/users/user_tag/`;
 
 export const fetchUserByUserTag = createAsyncThunk(
   "user/fetch",
-  async (user_tag: string, { rejectWithValue }) => {
-    const userDto: UserDto = await fetch(`${fetchUserUrl}${user_tag}`, {
-      method: "GET",
-    })
-      .then((res) => res.json())
-      .catch((err) => {
-        return rejectWithValue(err);
-      });
-    const user: User = { ...userDto, email: "" };
-
-    return user;
+  async ({ user_tag }: FetchUserByUserTagAction, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(`${fetchUserByUserTagUrl}${user_tag}/`);
+      return response.data as FetchUserByUserTagResponse;
+    } catch (err) {
+      return rejectWithValue(getRejectValueFromError(err as AxiosError));
+    }
   }
 );

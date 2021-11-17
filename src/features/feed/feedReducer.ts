@@ -3,17 +3,19 @@ import { createPost, deletePost } from "../post/postActions";
 import { Post, PostDto } from "../post/postTypes";
 import { User } from "../user/userTypes";
 import { fetchFeedByCursor } from "./feedActions";
-import { Feed } from "./feedTypes";
+import { FeedState } from "./feedTypes";
 
 const postAdapter = createEntityAdapter<Post>();
 const userAdapter = createEntityAdapter<User>();
 
-const initialState: Feed = {
+const initialState: FeedState = {
   next: null,
   previous: null,
   posts: postAdapter.getInitialState(),
   users: userAdapter.getInitialState(),
-  loading: false,
+  ui: {
+    loading: false,
+  },
 };
 
 const feedSlice = createSlice({
@@ -26,6 +28,12 @@ const feedSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(fetchFeedByCursor.pending, (state, action) => {
+        state.ui.loading = true;
+      })
+      .addCase(fetchFeedByCursor.rejected, (state, action) => {
+        state.ui.loading = false;
+      })
       .addCase(fetchFeedByCursor.fulfilled, (state, action) => {
         const users: User[] = [];
         const posts: Post[] = [];
@@ -39,12 +47,9 @@ const feedSlice = createSlice({
 
         postAdapter.upsertMany(state.posts, posts);
         userAdapter.upsertMany(state.users, users);
-        state.loading = false;
+        state.ui.loading = false;
         state.next = action.payload.next;
         state.previous = action.payload.previous;
-      })
-      .addCase(fetchFeedByCursor.pending, (state, action) => {
-        state.loading = true;
       })
       .addCase(createPost.fulfilled, (state, action) => {
         const author: User = action.payload.author;

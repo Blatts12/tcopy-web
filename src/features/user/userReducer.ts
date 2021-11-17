@@ -1,14 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { fetchUserByUserTag } from "./userActions";
-import { User } from "./userTypes";
+import { UserState } from "./userTypes";
 
-const initialState: { user: User; ui: { loading: boolean } } = {
+const initialState: UserState = {
   user: {
     id: -1,
     date_joined: "",
     last_login: "",
     display_name: "",
-    email: "",
     user_tag: "",
     is_staff: false,
   },

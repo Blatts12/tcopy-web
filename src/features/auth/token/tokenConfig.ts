@@ -1,6 +1,8 @@
-const tokenConfig = (getState: Function): HeadersInit => {
+import { AxiosRequestHeaders } from "axios";
+
+const tokenConfig = (getState: Function) => {
   const token = getState().auth.token;
-  const headers: HeadersInit = {
+  const headers: AxiosRequestHeaders = {
     "Content-Type": "application/json",
   };
   if (token) headers["Authorization"] = `Token ${token}`;
