@@ -11,6 +11,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import ProtectedElement from "../common/components/ProtectedElement";
 import PostPage from "./pages/PostPage";
+import Toasts from "../features/toast/Toasts";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -45,6 +46,7 @@ function App() {
             </Route>
           </Route>
         </Routes>
+        <Toasts />
       </div>
     </BrowserRouter>
   );

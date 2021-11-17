@@ -17,7 +17,7 @@ const initialState: UserState = {
 };
 
 const userSlice = createSlice({
-  name: "userDisplay",
+  name: "user",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
