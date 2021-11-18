@@ -15,7 +15,10 @@ export type ToastState = {
 };
 
 export type CreateToastAction = {
-  toast: Toast;
+  content: string;
+  closeable: boolean;
+  timeout: number;
+  type: ToastType;
 };
 
 export type DeleteToastAction = {

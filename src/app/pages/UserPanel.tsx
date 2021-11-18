@@ -36,7 +36,7 @@ const UserPanel: React.FC = () => {
   const authUser = useMemo(
     () => (
       <>
-        <span>Witaj, {user.user_tag}</span>
+        <span>Hello, {user.user_tag}!</span>
         <button
           onClick={() => navigate(`/user/${user.user_tag}`)}
           className="button button--action button--big"

@@ -26,6 +26,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="app">
+        <Toasts />
         <Routes>
           <Route path="/" element={<Home />}>
             <Route path="user">
@@ -46,7 +47,6 @@ function App() {
             </Route>
           </Route>
         </Routes>
-        <Toasts />
       </div>
     </BrowserRouter>
   );

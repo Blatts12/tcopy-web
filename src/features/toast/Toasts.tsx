@@ -1,8 +1,7 @@
 import React, { useCallback } from "react";
 import { useAppDispatch, useAppSelector } from "../../common/hooks/storeHooks";
 import ToastComponent from "./ToastComponent";
-import { createToast, deleteToast } from "./toastReducer";
-import { Toast } from "./toastTypes";
+import { deleteToast } from "./toastReducer";
 
 const Toasts: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -10,26 +9,23 @@ const Toasts: React.FC = () => {
 
   const closeToast = useCallback(
     (toastId: string) => {
-      console.log("closing");
       dispatch(deleteToast({ id: toastId }));
     },
     [dispatch]
   );
 
   return (
-    <>
-      <div className="toasts">
-        {Object.keys(toasts).map((toastId) => {
-          return (
-            <ToastComponent
-              key={toastId}
-              toast={toasts[toastId]}
-              closeFunction={closeToast}
-            />
-          );
-        })}
-      </div>
-    </>
+    <div className="toasts toasts--bottom">
+      {Object.keys(toasts).map((toastId) => {
+        return (
+          <ToastComponent
+            key={toastId}
+            toast={toasts[toastId]}
+            closeFunction={closeToast}
+          />
+        );
+      })}
+    </div>
   );
 };
 

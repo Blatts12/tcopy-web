@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../common/hooks/storeHooks";
+import { createToast } from "../toast/toastReducer";
+import { Toast } from "../toast/toastTypes";
 import { registerUser } from "./authActions";
 
 interface RegisterInputs {
@@ -38,6 +40,14 @@ const RegisterForm: React.FC<Props> = ({ closeFunction }) => {
         if (closeFunction) {
           closeFunction();
         }
+        dispatch(
+          createToast({
+            content: "Welcome",
+            closeable: true,
+            timeout: 3250,
+            type: "success",
+          })
+        );
       })
       .catch((errors) => {
         if (errors.non_field_errors) {
