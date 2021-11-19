@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo } from "react";
 import { Outlet, useNavigate } from "react-router";
+import Button from "../../common/components/Button";
 import Drawer from "../../common/components/Drawer";
 import { useAppDispatch, useAppSelector } from "../../common/hooks/storeHooks";
 import { logoutUser } from "../../features/auth/authActions";
@@ -16,18 +17,16 @@ const UserPanel: React.FC = () => {
   const unauthUser = useMemo(
     () => (
       <>
-        <button
-          className="button button--action button--big"
-          onClick={() => navigate("login")}
-        >
+        <Button type="action" length="long" onClick={() => navigate("login")}>
           Login
-        </button>
-        <button
-          className="button button--action button--big"
+        </Button>
+        <Button
+          type="action"
+          length="long"
           onClick={() => navigate("register")}
         >
           Sign up
-        </button>
+        </Button>
       </>
     ),
     [navigate]
@@ -37,18 +36,16 @@ const UserPanel: React.FC = () => {
     () => (
       <>
         <span>Hello, {user.user_tag}!</span>
-        <button
+        <Button
+          type="action"
+          length="long"
           onClick={() => navigate(`/user/${user.user_tag}`)}
-          className="button button--action button--big"
         >
           Profile
-        </button>
-        <button
-          className="button button--action button--big"
-          onClick={handleLogout}
-        >
+        </Button>
+        <Button type="action" length="long" onClick={handleLogout}>
           Logout
-        </button>
+        </Button>
       </>
     ),
     [handleLogout, user]

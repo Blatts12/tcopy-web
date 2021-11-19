@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import Button from "../../common/components/Button";
 import { useAppDispatch, useAppSelector } from "../../common/hooks/storeHooks";
+import parseErrorArray from "../../common/parseErrorArray";
 import { createToast } from "../toast/toastReducer";
 import { Toast } from "../toast/toastTypes";
 import { registerUser } from "./authActions";
@@ -51,7 +53,7 @@ const RegisterForm: React.FC<Props> = ({ closeFunction }) => {
       })
       .catch((errors) => {
         if (errors.non_field_errors) {
-          setNonFieldErrors(errors.non_field_errors.join("\n"));
+          setNonFieldErrors(parseErrorArray(errors.non_field_errors));
           delete errors.non_field_errors;
         }
         for (const field in errors) {
@@ -62,7 +64,7 @@ const RegisterForm: React.FC<Props> = ({ closeFunction }) => {
             case "display_name":
             case "user_tag":
               setError(field, {
-                message: errors[field]?.join("\n"),
+                message: parseErrorArray(errors[field]),
               });
           }
         }
@@ -112,13 +114,14 @@ const RegisterForm: React.FC<Props> = ({ closeFunction }) => {
       />
       <div className="error-block">{errors.password_confirm?.message}</div>
 
-      <button
-        className="button button--submit"
+      <Button
         type="submit"
-        disabled={loadingRegister}
+        center={true}
+        loading={loadingRegister}
+        length="normal"
       >
-        {loadingRegister ? <div className="button__loading"></div> : "Sign Up"}
-      </button>
+        Sign in
+      </Button>
 
       <div className="error-block">{nonFieldErrors}</div>
 

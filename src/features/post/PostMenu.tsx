@@ -5,6 +5,7 @@ import {
   BsFillTrashFill,
 } from "react-icons/bs";
 import { useNavigate } from "react-router";
+import Button from "../../common/components/Button";
 import Menu from "../../common/components/Menu";
 import { useAppDispatch, useAppSelector } from "../../common/hooks/storeHooks";
 import { User } from "../user/userTypes";
@@ -44,27 +45,25 @@ const PostMenu = React.memo(({ post, author, closeMenu }: Props) => {
   return (
     <Menu closeFunction={closeMenu}>
       {user.id === author.id && (
-        <button
-          className="button button--menu"
-          onClick={() => onDeletePost(post)}
-        >
+        <Button type="menu" length="long" onClick={() => onDeletePost(post)}>
           <BsFillTrashFill />
           Delete
-        </button>
+        </Button>
       )}
 
-      <button
-        className="button button--menu"
+      <Button
+        type="menu"
+        length="long"
         onClick={() => navigateTo(`/user/${author.user_tag}/${post.id}`)}
       >
         <BsFillCursorFill />
         Open
-      </button>
-      <button className="button button--menu">
+      </Button>
+      <Button type="menu" length="long">
         <BsFillShareFill />
         <del>Get link</del>
         <i>WIP</i>
-      </button>
+      </Button>
     </Menu>
   );
 });

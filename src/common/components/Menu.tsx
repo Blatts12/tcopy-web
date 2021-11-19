@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "./Button";
 
 interface Props {
   children: React.ReactNode;
@@ -18,9 +19,9 @@ const Menu = React.memo(({ children, closeFunction }: Props) => {
     <div className="menu" onClick={closeMenu}>
       <div className="menu__body">
         <div className="menu__close">
-          <button className="button button--action" onClick={closeFunction}>
+          <Button type="action" length="long" onClick={closeFunction}>
             Close
-          </button>
+          </Button>
         </div>
         <div className="menu__content">{children}</div>
       </div>

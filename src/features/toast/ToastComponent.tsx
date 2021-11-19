@@ -23,9 +23,11 @@ const ToastComponent = React.memo(({ toast, closeFunction }: Props) => {
   return (
     <div className={`toast toast--${toast.type}`}>
       <span>{toast.content}</span>
-      <span className="toast__close" onClick={() => closeToast(toast.id)}>
-        <BsXCircleFill />
-      </span>
+      {toast.closeable && (
+        <span className="toast__close" onClick={() => closeToast(toast.id)}>
+          <BsXCircleFill />
+        </span>
+      )}
     </div>
   );
 });

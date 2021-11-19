@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import Button from "../../common/components/Button";
 import { useAppDispatch, useAppSelector } from "../../common/hooks/storeHooks";
+import parseErrorArray from "../../common/parseErrorArray";
 import { createToast } from "../toast/toastReducer";
-import { Toast } from "../toast/toastTypes";
 import { loginUser } from "./authActions";
 
 interface LoginInputs {
@@ -38,7 +39,7 @@ const LoginForm: React.FC<Props> = ({ closeFunction }) => {
         dispatch(
           createToast({
             content: "Welcome back",
-            closeable: true,
+            closeable: false,
             timeout: 3250,
             type: "success",
           })
@@ -46,7 +47,7 @@ const LoginForm: React.FC<Props> = ({ closeFunction }) => {
       })
       .catch((errors) => {
         if (errors.non_field_errors) {
-          setNonFieldErrors(errors.non_field_errors.join("\n"));
+          setNonFieldErrors(parseErrorArray(errors.non_field_errors));
           delete errors.non_field_errors;
         }
         for (const field in errors) {
@@ -54,7 +55,7 @@ const LoginForm: React.FC<Props> = ({ closeFunction }) => {
             case "email":
             case "password":
               setError(field, {
-                message: errors[field]?.join("\n"),
+                message: parseErrorArray(errors[field]),
               });
           }
         }
@@ -85,13 +86,14 @@ const LoginForm: React.FC<Props> = ({ closeFunction }) => {
       />
       <div className="error-block">{errors.password?.message}</div>
 
-      <button
-        className="button button--submit"
+      <Button
         type="submit"
-        disabled={loadingLogin}
+        center={true}
+        length="normal"
+        loading={loadingLogin}
       >
-        {loadingLogin ? <div className="button__loading"></div> : "Log In"}
-      </button>
+        Log in
+      </Button>
 
       <div className="error-block text-center">{nonFieldErrors}</div>
 
