@@ -20,7 +20,7 @@ export type User = {
 };
 
 export type UserState = {
-  user: User;
+  user: User | null;
   ui: {
     loading: boolean;
   };

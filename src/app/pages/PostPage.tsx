@@ -10,14 +10,14 @@ interface Params {
 }
 
 const PostPage: React.FC = () => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { post_id } = useParams();
-  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const promise = dispatch(fetchPost({ id: post_id || "" }));
+    const fetchPostPromise = dispatch(fetchPost({ id: post_id || "" }));
     return () => {
-      promise.abort();
+      fetchPostPromise.abort();
     };
   }, [post_id]);
 

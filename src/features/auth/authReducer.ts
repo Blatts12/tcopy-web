@@ -6,19 +6,11 @@ const initialState: AuthState = {
   token: localStorage.getItem("token"),
   authenticated: false,
   ui: {
-    loadingLoad: false,
+    loadingUser: true,
     loadingLogin: false,
     loadingRegister: false,
   },
-  user: {
-    id: -1,
-    email: "",
-    date_joined: "",
-    user_tag: "",
-    display_name: "",
-    last_login: "",
-    is_staff: false,
-  },
+  user: null,
 };
 
 const authSlice = createSlice({
@@ -28,27 +20,27 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(loginUser.pending, (state, action) => {
-        state.ui.loadingLogin = true;
+        state.ui.loadingUser = true;
       })
       .addCase(loginUser.rejected, (state, action) => {
-        state.ui.loadingLogin = false;
+        state.ui.loadingUser = false;
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         localStorage.setItem("token", action.payload.token);
         state.token = action.payload.token;
         state.authenticated = true;
-        state.ui.loadingLogin = false;
+        state.ui.loadingUser = false;
         state.user = action.payload.user;
       })
       .addCase(loadUser.pending, (state, action) => {
-        state.ui.loadingLoad = true;
+        state.ui.loadingUser = true;
       })
       .addCase(loadUser.rejected, (state, action) => {
-        state.ui.loadingLoad = false;
+        state.ui.loadingUser = false;
       })
       .addCase(loadUser.fulfilled, (state, action) => {
         state.authenticated = true;
-        state.ui.loadingLoad = false;
+        state.ui.loadingUser = false;
         state.user = action.payload;
       })
       .addCase(registerUser.pending, (state, action) => {

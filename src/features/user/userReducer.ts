@@ -3,14 +3,7 @@ import { fetchUserByUserTag } from "./userActions";
 import { UserState } from "./userTypes";
 
 const initialState: UserState = {
-  user: {
-    id: -1,
-    date_joined: "",
-    last_login: "",
-    display_name: "",
-    user_tag: "",
-    is_staff: false,
-  },
+  user: null,
   ui: {
     loading: false,
   },
@@ -24,6 +17,7 @@ const userSlice = createSlice({
     builder
       .addCase(fetchUserByUserTag.pending, (state, action) => {
         state.ui.loading = true;
+        state.user = null;
       })
       .addCase(fetchUserByUserTag.fulfilled, (state, action) => {
         state.ui.loading = false;

@@ -4,11 +4,11 @@ export type AuthState = {
   token: string | null;
   authenticated: boolean;
   ui: {
+    loadingUser: boolean;
     loadingLogin: boolean;
     loadingRegister: boolean;
-    loadingLoad: boolean;
   };
-  user: AuthenticatedUser;
+  user: AuthenticatedUser | null;
 };
 
 type AuthenticatedUserWithToken = {

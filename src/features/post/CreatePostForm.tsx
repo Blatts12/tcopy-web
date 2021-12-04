@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useAppDispatch, useAppSelector } from "../../common/hooks/storeHooks";
 import { createPost } from "./postActions";
@@ -37,26 +37,27 @@ const CreatePostForm: React.FC<Props> = ({ closeFunction }) => {
       setError("content", {
         message: "Content is empty",
       });
-    } else {
-      dispatch(createPost({ content: parsedContent, author: user }))
-        .unwrap()
-        .then((_) => {
-          reset();
-          if (closeFunction) {
-            closeFunction();
-          }
-        })
-        .catch((errors) => {
-          if (errors.non_field_errors) {
-            setNonFieldErrors(errors.non_field_errors.join("\n"));
-          }
-          if (errors.content) {
-            setError("content", {
-              message: errors.content.join("\n"),
-            });
-          }
-        });
+      return;
     }
+    if (!user) return;
+    dispatch(createPost({ content: parsedContent, author: user }))
+      .unwrap()
+      .then((_) => {
+        reset();
+        if (closeFunction) {
+          closeFunction();
+        }
+      })
+      .catch((errors) => {
+        if (errors.non_field_errors) {
+          setNonFieldErrors(errors.non_field_errors.join("\n"));
+        }
+        if (errors.content) {
+          setError("content", {
+            message: errors.content.join("\n"),
+          });
+        }
+      });
   };
 
   useEffect(() => {
@@ -65,6 +66,10 @@ const CreatePostForm: React.FC<Props> = ({ closeFunction }) => {
       area.style.height = "25px";
       area.style.height = `${area.scrollHeight + 2}px`;
     }
+  }, [watchContent]);
+
+  const lengthDisplay = useMemo(() => {
+    return <span>{watchContent?.length || 0}/512</span>;
   }, [watchContent]);
 
   return (
@@ -80,6 +85,7 @@ const CreatePostForm: React.FC<Props> = ({ closeFunction }) => {
         {...rest}
       />
       <div className="error-block">{errors.content?.message}</div>
+      {lengthDisplay}
       <input className="button button--submit" type="submit" value="Post" />
       <div className="error-block text-center">{nonFieldErrors}</div>
     </form>

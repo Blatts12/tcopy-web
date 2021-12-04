@@ -14,7 +14,7 @@ export const fetchUserByUserTag = createAsyncThunk(
   "user/fetch",
   async ({ user_tag }: FetchUserByUserTagAction, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${fetchUserByUserTagUrl}${user_tag}/`);
+      const response = await axios.get(`${fetchUserByUserTagUrl}${user_tag}`);
       return response.data as FetchUserByUserTagResponse;
     } catch (err) {
       return rejectWithValue(getRejectValueFromError(err as AxiosError));

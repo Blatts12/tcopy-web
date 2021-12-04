@@ -1,7 +1,7 @@
-import { useEffect } from "react";
-import { BrowserRouter } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { HashRouter } from "react-router-dom";
 import { Route, Routes } from "react-router";
-import { useAppDispatch } from "../common/hooks/storeHooks";
+import { useAppDispatch, useAppSelector } from "../common/hooks/storeHooks";
 import { loadUser } from "../features/auth/authActions";
 import Home from "./pages/Home";
 import UserProfile from "./pages/UserProfile";
@@ -24,7 +24,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div className="app">
         <Toasts />
         <Routes>
@@ -48,7 +48,7 @@ function App() {
           </Route>
         </Routes>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

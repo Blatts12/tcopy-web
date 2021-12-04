@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useNavigate, useParams } from "react-router";
+import { Navigate, useNavigate, useParams } from "react-router";
 import Drawer from "../../common/components/Drawer";
 import Loading from "../../common/components/Loading";
 import { useAppDispatch, useAppSelector } from "../../common/hooks/storeHooks";
@@ -19,24 +19,24 @@ const UserProfile: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const loadUserPromise = dispatch(
+    const fetchUserPromise = dispatch(
       fetchUserByUserTag({ user_tag: user_tag || "" })
     );
-    loadUserPromise.unwrap().then((result) => {
-      if (!result.id) navigate("/");
+    fetchUserPromise.unwrap().catch(() => {
+      navigate("/");
     });
     return () => {
-      loadUserPromise.abort();
+      fetchUserPromise.abort();
     };
   }, [user_tag]);
 
   return (
     <Drawer
       zIndex={1}
-      title={user.display_name}
+      title={user && !loading ? user.display_name : ""}
       closeFunction={() => navigate("/")}
     >
-      {loading || user.user_tag !== user_tag ? <Loading /> : user.display_name}
+      {user && !loading ? user.display_name : <Loading />}
       <i>WIP</i>
     </Drawer>
   );

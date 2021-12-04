@@ -32,8 +32,9 @@ const UserPanel: React.FC = () => {
     [navigate]
   );
 
-  const authUser = useMemo(
-    () => (
+  const authUser = useMemo(() => {
+    if (!user) return <></>;
+    return (
       <>
         <span>Hello, {user.user_tag}!</span>
         <Button
@@ -47,9 +48,8 @@ const UserPanel: React.FC = () => {
           Logout
         </Button>
       </>
-    ),
-    [handleLogout, user]
-  );
+    );
+  }, [handleLogout, user]);
 
   return (
     <Drawer zIndex={1} title="User Panel" closeFunction={() => navigate("/")}>
